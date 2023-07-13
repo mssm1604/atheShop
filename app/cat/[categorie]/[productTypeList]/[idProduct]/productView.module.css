@@ -1,0 +1,387 @@
+.pageWrapper {
+  position: relative;
+  background-color: rgb(222, 219, 219);
+  width: 100%;
+  height: 100%;
+}
+
+.mainInfoWrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  background-color: #e8e8e8;
+}
+
+.productPictures {
+  position: relative;
+  width: 65%;
+  height: fit-content;
+}
+
+.productPictures ul {
+  position: relative;
+  display: flex;
+  align-content: start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.productPictures ul li {
+  position: relative;
+  height: 600px;
+  width: 50%;
+}
+
+.productPictures ul li:first-child {
+  width: 100%;
+}
+
+.productPictures ul li img {
+  object-fit: cover;
+  padding: 1px;
+  width: 100%;
+  height: 100%;
+}
+
+.productInfo {
+  font-family: "Poppins", sans-serif;
+  margin-top: 70px;
+  width: 35%;
+  align-items: start;
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  height: fit-content;
+}
+
+.titleAndPrice {
+  padding: 116px 23px 40px 23px;
+  background-color: #cecece;
+}
+
+.titleAndPrice > div {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 84px;
+}
+
+.titleAndPrice .titleWrapper,
+.titleAndPrice .priceWrapper {
+  padding: 5px 15px;
+  border: 1px solid black;
+}
+
+.titleWrapper h4 {
+  font-weight: 600;
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 100%;
+}
+
+.titleWrapper p {
+  font-family: "Antic";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.045em;
+}
+
+.priceWrapper span {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0.045em;
+}
+
+.purchaseContent {
+  display: flex;
+  flex-direction: column;
+  background-color: #e8e8e8;
+}
+
+.qtSizeGuide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 66px 30px;
+  line-height: 100%;
+}
+
+.qtSizeGuide > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 200;
+  font-size: 16px;
+  letter-spacing: 0.045em;
+
+  .h4 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: min-content;
+    font-weight: 200;
+
+    .span {
+      height: 16px;
+    }
+
+    .span svg {
+      fill: transparent;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-inline: 30px;
+  margin-bottom: 70px;
+}
+
+.buttonsWrapper > button {
+  display: flex;
+  justify-content: center;
+  padding-block: 17px;
+  border: 1px solid black;
+  filter: drop-shadow(0px 12px 24px rgba(204, 204, 204, 0.55));
+
+  .btnText {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.085em;
+  }
+}
+
+.buttonsWrapper .addToCart.inCart {
+  background-color: #878787;
+  text-transform: uppercase;
+}
+
+.addToCart.notInCart {
+  background-color: transparent;
+}
+
+.buttonsWrapper .purchaseNow {
+  background-color: black;
+
+  .btnText {
+    color: white;
+  }
+}
+
+.productDescription {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  gap: 50px;
+  margin: 50px 60px 150px;
+  padding: 40px 30px;
+  color: rgb(0, 0, 0);
+  background-color: #cecece;
+
+  .description {
+    display: grid;
+    place-items: center;
+    width: 50%;
+    padding-inline: 70px;
+  }
+
+  .description p {
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 125%;
+    letter-spacing: 0.05em;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 50%;
+    border-left: 2px solid rgba(0, 0, 0, 0.121);
+    border-radius: 1px;
+  }
+
+  .details h3 {
+    font-weight: 200;
+    font-size: 25px;
+    line-height: 100%;
+    text-align: center;
+  }
+
+  .details ul {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 100%;
+    padding-left: 70px;
+  }
+
+  .details ul li {
+    list-style: disc;
+  }
+}
+
+.relatedProducts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  .relatedProductsList {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+  }
+
+  .relatedProductsList li {
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+
+  .relatedProductsList img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.relatedProducts h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .productInfo {
+    .titleAndPrice {
+      padding: 0;
+      padding-block: 20px;
+    }
+
+    .titleWrapper h4 {
+      font-size: 23px;
+    }
+
+    .titleWrapper p {
+      font-size: 14px;
+    }
+
+    .priceWrapper,
+    .priceWrapper span {
+      font-size: 16px;
+    }
+  }
+
+  .productDescription {
+    flex-direction: column;
+    margin: 0px;
+    /* margin-block: 50px; */
+    padding: 15px 25px;
+    gap: 30px;
+
+    .description {
+      width: 100%;
+      padding-inline: 0px;
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .mainInfoWrapper {
+    flex-direction: column;
+
+    .productPictures {
+      width: 100%;
+    }
+
+    .productInfo {
+      width: 100%;
+      margin-top: 20px;
+
+      .titleAndPrice {
+        padding: 0;
+        padding-block: 40px;
+      }
+
+      .titleAndPrice > div {
+        gap: 40px;
+        align-items: flex-start;
+      }
+
+      .qtSizeGuide {
+        margin-top: 40px;
+      }
+    }
+
+    .productInfo .qtSizeGuide,
+    .productInfo .titleAndPrice > div,
+    .buttonsWrapper {
+      margin-inline: auto;
+      width: 90%;
+    }
+
+    .qtSizeGuide,
+    .buttonsWrapper {
+      margin-bottom: 40px;
+    }
+
+    .buttonsWrapper button {
+      padding-block: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .productDescription {
+    flex-direction: column;
+    margin-block: 100px;
+    padding: 15px 25px;
+    gap: 30px;
+
+    .description {
+      width: 100%;
+      padding-inline: 0px;
+    }
+
+    .details {
+      gap: 25px;
+      width: 100%;
+      border: none;
+      border-top: 2px solid rgba(0, 0, 0, 0.135);
+      border-radius: 1px;
+      padding-block: 30px 15px;
+    }
+
+    .details ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      row-gap: 15px;
+      padding-left: 25px;
+    }
+
+    .details ul li {
+      flex-basis: 40%;
+      max-width: 40%;
+      list-style: disc;
+    }
+  }
+}

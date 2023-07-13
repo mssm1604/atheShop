@@ -1,0 +1,23 @@
+.icons {
+   transition: 120ms all;
+   stroke: white;
+   cursor: pointer;
+}
+
+.icons:hover {
+   stroke: #ffffff9f;
+}
+
+/* .heartIcon:hover {
+   scale: 1.15;
+   fill: rgb(139, 4, 4);
+   stroke: rgb(139, 4, 4);
+} */
+
+.cartIcon {
+   margin-top: 1.3px;
+}
+
+.closeIcon {
+   fill: rgb(145, 2, 2);
+}
