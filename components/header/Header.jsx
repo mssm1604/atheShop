@@ -133,7 +133,7 @@ function Header({ headType }) {
                 </ul>
               </li>
               <li className={styles.men}>
-                <Link href={"/cat/men"}>Hombres</Link>
+                <Link className={styles.link} href={"/cat/men"}>Hombres</Link>
                 <ul className={styles.subList}>
                   <li>
                     <Link href={"/"}>Ropa</Link>
@@ -150,7 +150,7 @@ function Header({ headType }) {
                 </ul>
               </li>
               <li className={styles.kid}>
-                <Link href={"/cat/kids"}>Niños</Link>
+                <Link className={styles.link} href={"/cat/kids"}>Niños</Link>
                 <ul className={styles.subList}>
                   <li>
                     <Link href={"/"}>Ropa</Link>
@@ -167,7 +167,7 @@ function Header({ headType }) {
                 </ul>
               </li>
               <li className={styles.sport}>
-                <Link href={"/cat/sports"}>Deportes</Link>
+                <Link className={styles.link} href={"/cat/sports"}>Deportes</Link>
                 <ul className={styles.subList}>
                   <li>
                     <Link href={"/"}>Ropa</Link>

@@ -1,5 +1,5 @@
 "use client"
-
+//
 import styles from "@/styles/Home.module.css"
 import { ArrowLeft, ArrowRight } from "@/components/icons/Icons"
 import { useState } from "react"

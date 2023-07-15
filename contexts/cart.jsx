@@ -8,6 +8,10 @@ export function CartProvider({ children }) {
   const prevCart = JSON.parse(localStorage.getItem("cart")) || []
   const [cart, setCart] = useState(prevCart)
 
+  const findProductInCart = (idPr) => {
+    return cart.findIndex((item) => item.id == idPr)
+  }
+
   const addToCart = (product, qt, size) => {
     const productLayout = {
       id: product.prID,
@@ -16,9 +20,7 @@ export function CartProvider({ children }) {
       price: product.price,
     }
 
-    const productInCartIndex = cart.findIndex(
-      (item) => item.id === productLayout.id
-    )
+    const productInCartIndex = findProductInCart(productLayout.id)
 
     if (productInCartIndex >= 0) {
       const newCart = structuredClone(cart)
@@ -53,13 +55,33 @@ export function CartProvider({ children }) {
     setCart([])
   }
 
-  const findProductInCart = (idPr) => {
-    return cart.findIndex((item) => item.id == idPr)
+  const deleteFromCart = (productToDeleteId) => {
+    const newCart = cart.filter((item) => item.id != productToDeleteId)
+    setCart(newCart)
+    localStorage.setItem("cart", JSON.stringify(newCart))
+  }
+
+  const updateProduct = (productToUpdateId, { qt, size }) => {
+    const productInCartIndex = findProductInCart(productToUpdateId)
+    const newCart = structuredClone(cart)
+
+    newCart[productInCartIndex].quantity = qt
+    newCart[productInCartIndex].size = size
+
+    localStorage.setItem("cart", JSON.stringify(newCart))
+    setCart(newCart)
   }
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, clearCart, findProductInCart }}
+      value={{
+        cart,
+        addToCart,
+        clearCart,
+        findProductInCart,
+        deleteFromCart,
+        updateProduct,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -12,24 +12,45 @@ import styles from "./cart.module.css"
 import Image from "next/image"
 import { useCart } from "@/hooks/useCart"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function CartPage() {
-  const [currentProduct, setCurrentProduct] = useState(null)
+  const { cart, findProductInCart, deleteFromCart, updateProduct } = useCart()
+  const [currentProductToEdit, setCurrentProductToEdit] = useState(null)
   const [renderQt, setRenderQt] = useState([])
-  const { cart } = useCart()
+  const [summaryPrices, setSummaryPrices] = useState([])
+  const [ifUploadData, setIfUploadData] = useState({})
 
   const handleBtnEditClick = (id) => {
-    const productInCartIndex = cart.findIndex((item) => item.id === id)
-    renderQuantityOpt(6)
-    setCurrentProduct(cart[productInCartIndex])
+    const productInCartIndex = findProductInCart(id)
+    renderQuantityOpt(5)
+    setCurrentProductToEdit(cart[productInCartIndex])
+
+    setIfUploadData({
+      size: cart[productInCartIndex].size,
+      qt: cart[productInCartIndex].quantity,
+    })
+  }
+
+  const handleSizeChange = (e) => {
+    const value = e.target.value
+    setIfUploadData((prevState) => ({ ...prevState, size: value }))
+  }
+
+  const handleQtChange = (e) => {
+    const value = e.target.value
+    setIfUploadData((prevState) => ({ ...prevState, qt: value }))
   }
 
   const handleBtnCancelClick = () => {
-    setCurrentProduct(null)
+    setCurrentProductToEdit(null)
   }
 
-  const handleBtnSaveClick = () => {}
+  const handleBtnSaveClick = (id) => {
+    updateProduct(id, ifUploadData)
+    setCurrentProductToEdit(null)
+    console.log(ifUploadData)
+  }
 
   const renderQuantityOpt = (times) => {
     const array = []
@@ -38,6 +59,22 @@ function CartPage() {
     }
     setRenderQt(array)
   }
+
+  const getTotalPrice = () => {
+    const subTotal = cart.reduce(
+      (acc, { quantity, price }) => acc + quantity * price,
+      0
+    )
+    const shipment = 10
+    const taxes = parseInt((subTotal * 0.12).toFixed(2))
+    const total = subTotal + shipment + taxes
+
+    setSummaryPrices([subTotal, shipment, taxes, total])
+  }
+
+  useEffect(() => {
+    getTotalPrice()
+  }, [cart])
 
   return (
     <>
@@ -76,7 +113,7 @@ function CartPage() {
             <section className={styles.productsCount}>
               <h1 className={styles.h1}>Mi carrito de compras</h1>
 
-              {cart.map(({ id, brand, productType, price, quantity }) => (
+              {cart.map(({ id, brand, productType, price, quantity, size }) => (
                 <div key={id} className={styles.itemCardWrapper}>
                   <div className={styles.imageWrapper}>
                     <Image
@@ -97,7 +134,7 @@ function CartPage() {
                       <div className={styles.sizeQt}>
                         <div className={styles.size}>
                           <div>
-                            <span>Talla: M</span>
+                            <span>Talla: {size}</span>
                           </div>
                         </div>
                         <div className={styles.quantity}>
@@ -123,7 +160,7 @@ function CartPage() {
                       <li onClick={() => handleBtnEditClick(id)}>
                         <Edit2 />
                       </li>
-                      <li>
+                      <li onClick={() => deleteFromCart(id)}>
                         <Trash />
                       </li>
                     </ul>
@@ -139,19 +176,19 @@ function CartPage() {
                 <div className={styles.summaryCount}>
                   <div>
                     <span>Subtotal</span>
-                    <span>$1548,34</span>
+                    <span>${}</span>
                   </div>
                   <div>
                     <span>Envío</span>
-                    <span>$10</span>
+                    <span>${}</span>
                   </div>
                   <div>
                     <span>impuestos</span>
-                    <span>$76,43</span>
+                    <span>${}</span>
                   </div>
                   <div className={styles.summaryTotal}>
                     <span>Total</span>
-                    <span>$1548,34</span>
+                    <span>${}</span>
                   </div>
                 </div>
 
@@ -169,24 +206,28 @@ function CartPage() {
         )}
 
         {/* On edit view */}
-        {currentProduct && (
+        {currentProductToEdit && (
           <section className={styles.overlay}>
             <article className={styles.editView}>
               <div className={styles.mainContentWrapper}>
                 {" "}
                 <div className={styles.selectionsWrapper}>
                   <div className={styles.title}>
-                    <h3>{currentProduct.brand}</h3>
-                    <span>{currentProduct.productType}</span>
+                    <h3>{currentProductToEdit.brand}</h3>
+                    <span>{currentProductToEdit.productType}</span>
                   </div>
                   <div className={styles.optionsWrapper}>
                     <div className={`${styles.input} ${styles.optSize}`}>
                       <label htmlFor="sizeSelector">Talla</label>
                       <div className={styles.selectorWrapper}>
-                        <select className={styles.select} id="sizeSelector">
+                        <select
+                          onChange={handleSizeChange}
+                          className={styles.select}
+                          id="sizeSelector"
+                        >
                           <option value="S">S</option>
                           <option value="M">M</option>
-                          <option value="l">L</option>
+                          <option value="L">L</option>
                         </select>
                         <div className={styles.inputSvg}>
                           <ArrowDown />
@@ -196,14 +237,14 @@ function CartPage() {
                     <div className={`${styles.input} ${styles.optQuantity}`}>
                       <label htmlFor="quantitySelector">Cantidad</label>
                       <div className={styles.selectorWrapper}>
-                        <select className={styles.select} id="quantitySelector">
+                        <select
+                          onChange={handleQtChange}
+                          className={styles.select}
+                          id="quantitySelector"
+                        >
                           {renderQt.map((number) =>
-                            currentProduct.quantity === number ? (
-                              <option
-                                key={number}
-                                value={number}
-                                selected
-                              >
+                            currentProductToEdit.quantity == number ? (
+                              <option key={number} value={number} selected>
                                 {number}
                               </option>
                             ) : (
@@ -245,19 +286,26 @@ function CartPage() {
                   <div className={styles.prices}>
                     <div className={styles.unitPriceSection}>
                       <h4 className={styles.priceLabel}>Precio unitaro</h4>
-                      <span>${currentProduct.price}</span>
+                      <span>${currentProductToEdit.price}</span>
                     </div>
                     <div className={styles.totalPriceSection}>
                       <h4 className={styles.priceLabel}>Precio total</h4>
                       <span>
-                        ${currentProduct.price * currentProduct.quantity}
+                        $
+                        {currentProductToEdit.price *
+                          currentProductToEdit.quantity}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className={styles.saveAndCancelWrapper}>
-                <button className={`${styles.button} ${styles.saveButton}`}>
+                <button
+                  onClick={() => {
+                    handleBtnSaveClick(currentProductToEdit.id)
+                  }}
+                  className={`${styles.button} ${styles.saveButton}`}
+                >
                   <span>Guardar</span>
                 </button>
                 <button
