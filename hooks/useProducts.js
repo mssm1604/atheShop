@@ -15,6 +15,7 @@ function useProducts() {
           productTypeList,
         }
       )
+
       return data.products
     } catch (error) {
       console.log(error)

@@ -11,11 +11,11 @@ import { Header } from "@/components/header/Header"
 
 function ProductView({ params }) {
   const [product, setProduct] = useState([])
-  const [isInCart, setIsInCart] = useState(0)
+  const [productInCartIndex, setProductInCartIndex] = useState(null)
   const [quantity, setQuantity] = useState(0)
-  const [size, setSize] = useState("...")
+  const [size, setSize] = useState(null)
 
-  const { addToCart, findProductInCart } = useCart()
+  const { cart, addToCart, findProductInCart } = useCart()
 
   const { getDataFromDb } = useProducts()
 
@@ -24,14 +24,16 @@ function ProductView({ params }) {
     setProduct(products)
   }
 
-  const checkIfProductInCart = (id) => {
-    const isProductInCart = findProductInCart(id)
-    setIsInCart(isProductInCart)
+  const checkIfProductInCart = async (id) => {
+    const isProductInCart = await findProductInCart(id)
+    setProductInCartIndex(isProductInCart)
   }
 
   const handleOnClickAddToCart = () => {
-    checkIfProductInCart(params.idProduct)
+    const cartLength = cart.length
+    console.log(cartLength)
     addToCart(product, quantity, size)
+    setProductInCartIndex(cartLength + 1)
   }
 
   const handleOnChangeQuantity = (e) => {
@@ -107,53 +109,74 @@ function ProductView({ params }) {
                 </div>
               </section>
 
+
+            
+
               <section className={styles.purchaseContent}>
                 {/*  */}
                 <div className={styles.qtSizeGuide}>
                   {/*  */}
                   <div className={styles.qt}>
-                    <div>
+                    <div className={styles.wrapper}>
                       <label htmlFor="quantity">Cantidad</label>
-                      <select id="quantity" onChange={handleOnChangeQuantity}>
-                        <option value="0"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                      </select>
+
+                      {productInCartIndex > 0 ? (
+                        <span>{cart[productInCartIndex]?.quantity}</span>
+                      ) : (
+                        <select
+                          className={styles.select}
+                          id="quantity"
+                          onChange={handleOnChangeQuantity}
+                        >
+                          <option value="0">Selecciona</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      )}
                     </div>
-                    <span>{quantity}</span>
+                    {/* <span>{quantity}</span> */}
                   </div>
                   <div className={styles.size}>
-                    <div>
-                      <label htmlFor="Talla">Selecciona tu talla</label>
-                      <select id="Talla" onChange={handleOnChangeSize}>
-                        <option value="0"></option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                      </select>
+                    <div className={styles.wrapper}>
+                      <label htmlFor="Talla">Talla</label>
+
+                      {productInCartIndex > 0 ? (
+                        <span>{cart[productInCartIndex]?.size}</span>
+                      ) : (
+                        <select
+                          className={styles.select}
+                          id="Talla"
+                          onChange={handleOnChangeSize}
+                        >
+                          <option value="0">Selecciona</option>
+                          <option value="XS">XS</option>
+                          <option value="S">S</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                          <option value="XL">XL</option>
+                        </select>
+                      )}
                     </div>
-                    <span>{size}</span>
+                    {/* <span>{size}</span> */}
                   </div>
-                  <div className={styles.guide}>
+                  {/* <div className={styles.guide}>
                     <h4 className={styles.h4}>Guia de tallas</h4>
-                  </div>
+                  </div> */}
                   {/*  */}
                 </div>
 
                 <div className={styles.buttonsWrapper}>
                   <button
                     className={`${styles.addToCart} ${
-                      isInCart > 0 ? styles.inCart : styles.notInCart
+                      productInCartIndex > 0 ? styles.inCart : styles.notInCart
                     }`}
                     onClick={handleOnClickAddToCart}
                   >
                     <span className={styles.btnText}>
-                      {isInCart > 0
-                        ? "producto en el carrito"
+                      {productInCartIndex > 0
+                        ? "Ver carrito"
                         : "agregar al carrito"}
                     </span>
                   </button>

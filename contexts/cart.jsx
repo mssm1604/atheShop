@@ -49,6 +49,7 @@ export function CartProvider({ children }) {
         },
       ])
     )
+
   }
 
   const clearCart = () => {

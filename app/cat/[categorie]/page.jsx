@@ -2,8 +2,14 @@ import styles from "./men.module.css"
 import { CatArticles } from "@/components/cat/categorie/CatArticles"
 import { CategorieHeader } from "@/components/cat/categorie/CategorieHeader"
 import { Header } from "@/components/header/Header"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "pages/api/auth/[...nextauth]"
 
-function MenCat({ params }) {
+async function MenCat({ params }) {
+  // const session = await getServerSession(authOptions)
+  // console.log('f----------- ', JSON.stringify(authOptions))
+  console.log("f----------- ", authOptions)
+
   const { categorie } = params
 
   // if (productClass == "women") return

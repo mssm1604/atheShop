@@ -119,6 +119,24 @@
   font-weight: 200;
   font-size: 16px;
   letter-spacing: 0.045em;
+  /* border: 1px solid red; */
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .select {
+    min-width: 49px;
+    padding: 5px 10px;
+    border: none;
+    /* appearance: none; */
+    background-color: transparent;
+    border: 1px solid black;
+    font-size: 15px;
+  }
 
   .h4 {
     display: flex;

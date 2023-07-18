@@ -2,13 +2,15 @@
 //
 import styles from "@/styles/Home.module.css"
 import { ArrowLeft, ArrowRight } from "@/components/icons/Icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SecCategories } from "@/components/home/SecCategories"
 import Image from "next/image"
 import { Header } from "@/components/header/Header"
+import { useUser } from "@/hooks/useUser"
 
 function Home() {
   const [activateClass, setActivateClass] = useState()
+  const [user, setUser] = useState()
 
   const handleDescriptionClick = () => {
     setActivateClass(true)
@@ -18,9 +20,12 @@ function Home() {
     setActivateClass(false)
   }
 
+  const { user: us } = useUser()
+  console.log(us?.user)
+
   return (
     <>
-      <Header headType={'mainView'}/>
+      <Header headType={"mainView"} />
       <section className={styles.infoWrapper}>
         <div className={styles.bgWrapper}>
           <Image

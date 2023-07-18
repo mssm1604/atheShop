@@ -127,6 +127,15 @@
           padding: 20px 0 10px 12px;
         }
 
+        .btnList li {
+          transition: 200ms;
+        }
+
+        .btnList li:hover {
+          transform: translateX(2px);
+          /* scale: 1.1; */
+        }
+
         .btnList svg {
           stroke: black;
         }

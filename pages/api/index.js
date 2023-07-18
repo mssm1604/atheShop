@@ -1,7 +1,7 @@
 import { query } from "@/config/dbConnection"
 
 async function handler(req, res) {
-  let { categorie, productTypeList} = req.body
+  let { categorie, productTypeList } = req.body
 
   if (productTypeList.includes("%20")) productTypeList = "readyToWear"
 
