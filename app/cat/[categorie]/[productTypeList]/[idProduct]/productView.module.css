@@ -328,7 +328,7 @@
     flex-direction: column;
 
     .productPictures {
-      width: 100%;
+      display: none;
     }
 
     .productInfo {

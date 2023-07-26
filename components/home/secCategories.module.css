@@ -56,22 +56,26 @@
   cursor: pointer;
 }
 
-/* 'art' article - 'w' women - 'm' men - 'sp' sport -'k' kids */
+.contArticle > a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
 .artBg {
   object-fit: cover;
   object-position: 50% 25%;
-  filter: brightness(110%);
+  filter: brightness(93%);
   transition: 300ms;
 }
 
 .contInfo {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  align-content: center;
-  margin: 38px 100px;
+  top: 38px;
+  right: 100px;
 }
 
 .contInfo h3 {
@@ -121,7 +125,8 @@
   }
 
   .contInfo {
-    margin: 20px 15px;
+    top: 20px;
+    right: 15px;
   }
 
   .artCategories ul {

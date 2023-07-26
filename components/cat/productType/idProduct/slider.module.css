@@ -1,0 +1,46 @@
+.carouselWrapper {
+    display: none;
+}
+
+@media (max-width: 920px) {
+  .carouselWrapper {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  .carouselFocus {
+    width: 500%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    transition: all ease 600ms;
+  }
+
+  .sliderItem {
+    position: relative;
+    width: calc(100% / 5);
+    height: 100%;
+  }
+
+  .sliderItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .button {
+    position: absolute;
+    top: 50%;
+  }
+
+  .leftButton {
+    left: 10px;
+  }
+
+  .rightButton {
+    right: 10px;
+  }
+}

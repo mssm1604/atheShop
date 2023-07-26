@@ -127,13 +127,13 @@
           padding: 20px 0 10px 12px;
         }
 
-        .btnList li {
+        .btnList li svg {
           transition: 200ms;
         }
 
-        .btnList li:hover {
-          transform: translateX(2px);
-          /* scale: 1.1; */
+        .btnList li:hover svg {
+          /* transform: translateX(2px); */
+          scale: 1.15;
         }
 
         .btnList svg {

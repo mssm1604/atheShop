@@ -1,6 +1,5 @@
 "use client"
 
-import { ArrowDown } from "@/components/icons/Icons"
 import styles from "./productView.module.css"
 import Image from "next/image"
 import { ProductCard } from "@/components/cat/productType/ProductCard"
@@ -8,6 +7,7 @@ import { useCart } from "@/hooks/useCart"
 import { useEffect, useState } from "react"
 import { useProducts } from "@/hooks/useProducts"
 import { Header } from "@/components/header/Header"
+import { Slider } from "@/components/cat/productType/idProduct/Slider"
 
 function ProductView({ params }) {
   const [product, setProduct] = useState([])
@@ -56,43 +56,20 @@ function ProductView({ params }) {
         <main className={styles.mainInfoWrapper}>
           <section className={styles.productPictures}>
             <ul>
-              <li>
-                <Image
-                  src={"/../public/menPic.jpg"}
-                  alt="primera foto del sumario de fotos del producto de hombres"
-                  fill
-                />
-              </li>
-              <li>
-                <Image
-                  src={"/../public/menPic.jpg"}
-                  alt="primera foto del sumario de fotos del producto de hombres"
-                  fill
-                />
-              </li>
-              <li>
-                <Image
-                  src={"/../public/menPic.jpg"}
-                  alt="primera foto del sumario de fotos del producto de hombres"
-                  fill
-                />
-              </li>
-              <li>
-                <Image
-                  src={"/../public/menPic.jpg"}
-                  alt="primera foto del sumario de fotos del producto de hombres"
-                  fill
-                />
-              </li>
-              <li>
-                <Image
-                  src={"/../public/menPic.jpg"}
-                  alt="primera foto del sumario de fotos del producto de hombres"
-                  fill
-                />
-              </li>
+              {product.images?.array.map((image, index) => (
+                <li key={index}>
+                  <Image
+                    src={image}
+                    alt="primera foto del sumario de fotos del producto de hombres"
+                    fill
+                  />
+                </li>
+              ))}
             </ul>
           </section>
+
+          <Slider carouselImages={product.images?.array} />
+
           <section className={styles.productInfo}>
             {/*  */}
 
@@ -108,9 +85,6 @@ function ProductView({ params }) {
                   </div>
                 </div>
               </section>
-
-
-            
 
               <section className={styles.purchaseContent}>
                 {/*  */}
@@ -159,12 +133,7 @@ function ProductView({ params }) {
                         </select>
                       )}
                     </div>
-                    {/* <span>{size}</span> */}
                   </div>
-                  {/* <div className={styles.guide}>
-                    <h4 className={styles.h4}>Guia de tallas</h4>
-                  </div> */}
-                  {/*  */}
                 </div>
 
                 <div className={styles.buttonsWrapper}>

@@ -1,8 +1,8 @@
 import styles from "./secCategories.module.css"
-import { Categories } from "./Categories"
+import { Categorie } from "./Categorie"
 
 function SecCategories() {
-  const articleProductList = ["shoes", "t-Shirt", "Pants", "accesories"]
+  const articleCategoriesList = ["ropa", "zapatos", "bolsos", "cinturones"]
 
   return (
     <main className={styles.catWrapper}>
@@ -15,28 +15,22 @@ function SecCategories() {
       </div>
 
       <section className={styles.contCategories}>
-        <Categories
-          urlLink="menPic.jpg"
+        <Categorie
+          urlLink="mujerMainPicture.jpg"
           title="mujer"
-          articleProductList={articleProductList}
+          articleCategoriesList={articleCategoriesList}
         />
 
-        <Categories
-          urlLink="gucci2.jpg"
+        <Categorie
+          urlLink="menPic.jpg"
           title="hombre"
-          articleProductList={articleProductList}
+          articleCategoriesList={articleCategoriesList}
         />
 
-        <Categories
-          urlLink="mujer2.jpg"
+        <Categorie
+          urlLink="deportesMainPicture.jpg"
           title="deportes"
-          articleProductList={articleProductList}
-        />
-
-        <Categories
-          urlLink="niños.jpg"
-          title="niños"
-          articleProductList={articleProductList}
+          articleCategoriesList={articleCategoriesList}
         />
       </section>
     </main>

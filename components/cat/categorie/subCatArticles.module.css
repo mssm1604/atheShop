@@ -6,6 +6,13 @@
   width: 100%;
 }
 
+.article a {
+  display: flex;
+  flex-direction: column;
+  height: 570px;
+  border: 1px solid black;
+}
+
 .article .artTitle {
   display: flex;
   justify-content: space-between;
@@ -23,6 +30,9 @@
 
 .span2 {
   grid-column: span 2;
+}
+
+.span2 a {
   height: 700px !important;
 }
 
@@ -34,8 +44,7 @@
 
 .imgWrapper .image {
   object-fit: cover;
-  object-position: top;
-  filter: brightness(80%);
+  filter: brightness(90%);
 }
 
 @media (max-width: 900px) {

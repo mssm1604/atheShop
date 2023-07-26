@@ -13,10 +13,10 @@ function Header({ headType }) {
   const header = useRef()
   const cartPreviewOverlay = useRef()
 
-  const handleOnBlur = (e) => {
-    const id = e.target.id
-    id === "overlay" && mobileNav.current.setAttribute("data-visible", false)
-    document.body.style.overflow = "auto"
+  const handleOnBlur = (e, itemToToggle) => {
+    // const id = e.target.id
+    // id === "overlay" && itemToToggle.current.setAttribute("data-visible", false)
+    // document.body.style.overflow = "auto"
   }
 
   const showNavbar = () => {
@@ -65,12 +65,10 @@ function Header({ headType }) {
             <li>
               <div href="/" className={styles.a} onClick={handleCartClick}>
                 <CartIcon className={styles.icons} />
-                {cart.length > 0 ? (
+                {cart.length > 0 && (
                   <span className={`${styles.cartCounter} ${styles[headType]}`}>
                     {cart.length}
                   </span>
-                ) : (
-                  ""
                 )}
               </div>
             </li>
@@ -90,16 +88,14 @@ function Header({ headType }) {
               <Link href={"/"}>Inicio</Link>
             </li>
             <li>
-              <Link href={"/cat/women"}>Mujeres</Link>
+              <Link href={"/cat/mujer"}>Mujeres</Link>
             </li>
             <li>
-              <Link href={"/cat/men"}>Hombres</Link>
+              <Link href={"/cat/hombre"}>Hombres</Link>
             </li>
+           
             <li>
-              <Link href={"/cat/kids"}>Niños</Link>
-            </li>
-            <li>
-              <Link href={"/cat/sports"}>Deportes</Link>
+              <Link href={"/cat/deportes"}>Deportes</Link>
             </li>
           </ul>
         </nav>
@@ -124,9 +120,9 @@ function Header({ headType }) {
 
           <div className={styles.productsWrapper}>
             {cart.length > 0 ? (
-              cart.map(({ brand, price, quantity }) => (
-                <>
-                  <article className={styles.productCard}>
+              <>
+                {cart.map(({ id, brand, price, quantity }) => (
+                  <article key={id} className={styles.productCard}>
                     <picture className={styles.productImageWrapper}>
                       <Image
                         className={styles.productImage}
@@ -153,14 +149,14 @@ function Header({ headType }) {
                       </div>
                     </div>
                   </article>
+                ))}
 
-                  <div className={styles.buttonWrapper}>
-                    <Link className={styles.cartButton} href={"/cart"}>
-                      Ver carrito
-                    </Link>
-                  </div>
-                </>
-              ))
+                <div className={styles.buttonWrapper}>
+                  <Link className={styles.cartButton} href={"/cart"}>
+                    Ver carrito
+                  </Link>
+                </div>
+              </>
             ) : (
               <>
                 <div className={styles.noProducts}>
@@ -190,7 +186,7 @@ function Header({ headType }) {
         id="overlay"
         data-visible="false"
         className={styles.overlay}
-        onClick={handleOnBlur}
+        onClick={handleOnBlur(mobileNav)}
       >
         <div>
           <button

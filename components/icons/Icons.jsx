@@ -59,29 +59,40 @@ export function CartIcon() {
   )
 }
 
-export function ArrowRight() {
+export function ArrowLeft() {
   return (
-    <svg width="25" height="25" viewBox="0 0 55 55" fill="none">
+    <svg
+      width="13"
+      height="23"
+      viewBox="0 0 13 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M20.0558 37.5028C19.5402 37.0246 19.2506 36.3761 19.2506 35.7C19.2506 35.0238 19.5402 34.3753 20.0558 33.8971L29.1115 25.5L20.0558 17.1028C19.5548 16.6219 19.2777 15.9778 19.2839 15.3092C19.2902 14.6406 19.5794 14.001 20.0893 13.5282C20.5991 13.0554 21.2889 12.7872 22.0099 12.7814C22.731 12.7756 23.4256 13.0326 23.9443 13.4971L34.9443 23.6971C35.4598 24.1753 35.7494 24.8238 35.7494 25.5C35.7494 26.1761 35.4598 26.8246 34.9443 27.3028L23.9443 37.5028C23.4286 37.9809 22.7292 38.2494 22 38.2494C21.2708 38.2494 20.5715 37.9809 20.0558 37.5028Z"
-        fill="#A6A6A6"
-        fillOpacity="0.53"
+        d="M11.8751 21.7083L1.66675 11.5L11.8751 1.29166"
+        stroke="black"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
 }
 
-export function ArrowLeft() {
+export function ArrowRight() {
   return (
-    <svg width="25" height="25" viewBox="0 0 35 35" fill="none">
-      <rect width="35" height="35" rx="10" fill="white" fillOpacity="0.2" />
+    <svg
+      width="13"
+      height="23"
+      viewBox="0 0 13 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
-        d="M21.8751 27.7083L11.6667 17.5L21.8751 7.29166"
+        d="M1 21.4167L11.21 12L1 1"
         stroke="black"
         strokeOpacity="0.83"
-        strokeWidth="2"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -130,6 +141,7 @@ export function Close() {
 export function Trash() {
   return (
     <svg
+      className={styles.trash}
       width="18"
       height="21"
       viewBox="0 0 18 21"
@@ -167,6 +179,7 @@ export function Edit() {
 export function Edit2() {
   return (
     <svg
+      className={styles.edit}
       fill="none"
       height="20"
       stroke="currentColor"

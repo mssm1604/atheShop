@@ -1,44 +1,31 @@
 import styles from "./men.module.css"
-import { CatArticles } from "@/components/cat/categorie/CatArticles"
+import { SubCatArticles } from "@/components/cat/categorie/SubCatArticles"
 import { CategorieHeader } from "@/components/cat/categorie/CategorieHeader"
 import { Header } from "@/components/header/Header"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "pages/api/auth/[...nextauth]"
+import {
+  menSubCatSections,
+  sportsSubCatSections,
+  womenSubCatSections,
+} from "@/public/subCategoriesContent/subCategories"
 
-async function MenCat({ params }) {
-  // const session = await getServerSession(authOptions)
-  // console.log('f----------- ', JSON.stringify(authOptions))
-  console.log("f----------- ", authOptions)
-
+async function SubCategoriesSection({ params }) {
   const { categorie } = params
+  let subCategories
 
-  // if (productClass == "women") return
-
-  const mensSection = [
-    {
-      title: "ready to wear",
-      urlImg: "ropaPic.jpg",
-      articleType: "span2",
-    },
-    { title: "shoes", urlImg: `${categorie}/shoes.jpg` },
-    { title: "bags", urlImg: "bagsMens.jpg" },
-    { title: "eyewear", urlImg: "accesoriesMens.jpg" },
-    { title: "belts", urlImg: "beltsMens.jpg" },
-  ]
+  categorie === "mujer" && (subCategories = womenSubCatSections)
+  categorie === "hombre" && (subCategories = menSubCatSections)
+  categorie === "deportes" && (subCategories = sportsSubCatSections)
 
   return (
     <>
       <Header headType={"mainView"} />
 
-      <CategorieHeader
-        urlImage={`../public/${categorie}Pic.jpg`}
-        catTitle={categorie}
-      />
+      <CategorieHeader categorieTitle={categorie} />
 
       <main className={styles.main}>
         <section className={`${styles.categoriesSection}`}>
-          {mensSection.map((product) => (
-            <CatArticles
+          {subCategories.map((product) => (
+            <SubCatArticles
               key={product.title}
               productData={product}
               categorieName={categorie}
@@ -50,4 +37,4 @@ async function MenCat({ params }) {
   )
 }
 
-export default MenCat
+export default SubCategoriesSection

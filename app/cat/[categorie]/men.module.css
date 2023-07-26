@@ -22,10 +22,6 @@
 
 .categoriesSection article {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 570px;
-  border: 1px solid black;
 }
 
 @media (max-width: 900px) {
@@ -43,7 +39,7 @@
     padding: 20px 10px;
   }
 
-  .categoriesSection article {
-    height: 500px;
+  .categoriesSection article a{
+    height: 500px !important;
   }
 }
