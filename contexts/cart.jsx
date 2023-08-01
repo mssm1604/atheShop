@@ -62,12 +62,12 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(newCart))
   }
 
-  const updateProduct = (productToUpdateId, { qt, size }) => {
+  const updateProduct = (productToUpdateId, { cantidad, talla }) => {
     const productInCartIndex = findProductInCart(productToUpdateId)
     const newCart = structuredClone(cart)
 
-    newCart[productInCartIndex].quantity = qt
-    newCart[productInCartIndex].size = size
+    newCart[productInCartIndex].quantity = cantidad
+    newCart[productInCartIndex].size = talla
 
     localStorage.setItem("cart", JSON.stringify(newCart))
     setCart(newCart)

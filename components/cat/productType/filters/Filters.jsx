@@ -1,11 +1,13 @@
 "use client"
 
-import { Close } from "@/components/icons/Icons"
-import styles from "./Filters.module.css"
+import { ArrowRight } from "@/components/icons/Icons"
 import { useFilters } from "@/hooks/useFilters"
+import styles from "./Filters.module.css"
+import { useRef } from "react"
 
-function Filters() {
+function Filters({ sectionName }) {
   const { filters, setFilters } = useFilters()
+  const filtersSection = useRef()
 
   const handleChangeMinPrice = (event) => {
     setFilters((prevState) => ({
@@ -21,45 +23,172 @@ function Filters() {
     }))
   }
 
-  return (
-    <section className={styles.filtersBar}>
-      <div className={styles.filtersGroupButtons}>
-        <ul>
-          <li>
-            <input
-              type="range"
-              min="0"
-              max="1000"
-              value={filters.minPrice}
-              onChange={handleChangeMinPrice}
-            />
-            <span>$ {filters.minPrice}</span>
+  const handleOnMouseEnter = (e) => {
+    const idItem = e.target.parentElement.id
+    const target = e.target
 
-            {/* <button>Categoría</button> */}
-          </li>
-          <li>
-            <label htmlFor="brand">Marca</label>
-            <select id="brand" onChange={handleChangeCategory}>
-              <option value="all">Todos</option>
-              <option value="Gucci">Gucci</option>
-              <option value="Adidas">Adidas</option>
-              <option value="Nike">Nike</option>
-            </select>
-            {/* <button>Filtros</button> */}
-          </li>
-          <li>
-            {/* <button>
-                Ordenar por: <span></span>
-              </button> */}
-          </li>
-        </ul>
+    if (idItem === "filtersSection") {
+      filtersSection.current.style.cssText =
+        "border:1px solid black; padding-block: 10px; bottom:auto;"
+    } else if (idItem === "orderBySection") {
+    } else {
+    }
+  }
+  const handleOnMouseLeave = (e) => {
+    const idItem = e.target.parentElement.id
+    const target = e.target
+
+    if (idItem == "filtersSection") {
+      filtersSection.current.style.cssText = "bottom:0"
+    } else if (idItem === "orderBySection") {
+    } else {
+    }
+  }
+
+  return (
+    <section className={`${styles.flexRow} ${styles.filtersBar}`}>
+      <div className={styles.sectionName}>
+        <h4>{`${sectionName?.productTypeList} para ${sectionName?.categorie}`}</h4>
       </div>
 
-      <div className={styles.filtersSummary}>
-        <div>
-          <h4>Filtros: </h4>
+      <div className={`${styles.flexRow} ${styles.filtersAndSelections}`}>
+        <div className={`${styles.flexRow} ${styles.filters}`}>
+          <div
+            id="filtersSection"
+            className={`${styles.groupWrapper} ${styles.filtersSection}`}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          >
+            <button className={`${styles.flexRow} ${styles.filterButton}`}>
+              Filtros{" "}
+              <span>
+                <ArrowRight />
+              </span>
+            </button>
+
+            <section
+              ref={filtersSection}
+              className={`${styles.filtersOptionsWrapper}`}
+            >
+              <div
+                className={`${styles.flexColumn} ${styles.listOptionsWrapper}`}
+              >
+                <section
+                  className={`${styles.listWrapper} ${styles.productTypeList}`}
+                >
+                  <h4>tipo de producto</h4>
+                  <ul className={`${styles.flexRow} ${styles.filtersOptions}`}>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      pantalones
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      pantalones
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      pantalones
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      camisetas
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      camisas
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      sudaderas
+                    </li>
+                  </ul>
+                </section>
+                <section
+                  className={`${styles.listWrapper} ${styles.productTypeList}`}
+                >
+                  <h4>tipo de producto</h4>
+                  <ul className={`${styles.flexRow} ${styles.filtersOptions}`}>
+                    <li>pantalones</li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      pantalones
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      pantalones
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      camisetas
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      camisas
+                    </li>
+                    <li>
+                      <span>
+                        <input type="checkbox" name="" id="" />
+                      </span>
+                      sudaderas
+                    </li>
+                  </ul>
+                </section>
+              </div>
+              <button>apply changes</button>
+            </section>
+          </div>
+          <div
+            id="orderBySection"
+            className={`${styles.groupWrapper} ${styles.orderBy}`}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          >
+            <button className={`${styles.flexRow} ${styles.filterButton}`}>
+              Ordenar por{" "}
+              <span>
+                <ArrowRight />
+              </span>
+            </button>
+          </div>
         </div>
 
+        <div
+          id="selectionsSection"
+          className={`${styles.groupWrapper} ${styles.selections}`}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        >
+          <button className={`${styles.flexRow} ${styles.filterButton}`}>
+            Selecciones{" "}
+            <span>
+              <ArrowRight />
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* <div className={styles.filtersSummary}>
         <div className={styles.summaryList}>
           <ul>
             {Object.entries(filters).map((key, value) => (
@@ -76,7 +205,7 @@ function Filters() {
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }

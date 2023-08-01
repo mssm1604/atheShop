@@ -1,0 +1,187 @@
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  height: fit-content;
+}
+
+.productInfo {
+  font-family: "Poppins", sans-serif;
+  margin-top: 70px;
+  width: 35%;
+  align-items: start;
+
+  .titleAndPrice {
+    padding: 116px 23px 40px 23px;
+    background-color: #cecece;
+  }
+}
+
+.titleAndPrice > article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 84px;
+}
+
+.titleAndPrice .titleWrapper,
+.titleAndPrice .priceWrapper {
+  padding: 5px 15px;
+  border: 1px solid black;
+}
+
+.titleWrapper h4 {
+  font-weight: 600;
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 100%;
+}
+
+.titleWrapper p {
+  font-family: "Antic";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.045em;
+}
+
+.priceWrapper span {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0.045em;
+}
+
+.purchaseContent {
+  display: flex;
+  flex-direction: column;
+  background-color: #e8e8e8;
+}
+
+.qtSize {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 66px 30px;
+  line-height: 100%;
+}
+
+
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-inline: 30px;
+  margin-bottom: 70px;
+}
+
+.buttonsWrapper button {
+  display: flex;
+  justify-content: center;
+  padding-block: 15px;
+  border: 1px solid black;
+  filter: drop-shadow(0px 12px 24px rgba(204, 204, 204, 0.55));
+
+  .btnText {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.085em;
+  }
+}
+
+.addToCart {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.buttonsWrapper .purchaseNow {
+  background-color: black;
+
+  .btnText {
+    color: white;
+  }
+}
+
+.ifProductCartWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 66px 30px;
+  line-height: 100%;
+
+  .ifPrInfo h2 {
+    color: rgba(0, 0, 0, 0.27);
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1.575px;
+    text-transform: uppercase;
+    margin-bottom: 55px;
+  }
+
+  .ifPrQtSize h3 {
+    color: rgba(0, 0, 0, 0.57);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    padding-block: 4px;
+  }
+
+  .ifPrBtnWrapper {
+    width: 100%;
+    margin-top: 60px;
+
+    background-color: #cecece;
+    border: 1px solid black;
+  }
+
+  .ifPrBtnWrapper a {
+    color: #000000ac;
+    text-transform: uppercase;
+    padding-block: 14px;
+  }
+}
+
+@media (max-width: 920px) {
+  .productInfo {
+    width: 100%;
+    margin-top: 20px;
+
+    .titleAndPrice {
+      padding: 0;
+      padding-block: 40px;
+    }
+
+    .titleAndPrice > article {
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .qtSize {
+      margin-top: 40px;
+    }
+  }
+
+  .productInfo .titleAndPrice > article,
+  .productInfo .qtSize,
+  .buttonsWrapper {
+    margin-inline: auto;
+    width: 90%;
+  }
+
+  .buttonsWrapper button {
+    padding-block: 10px;
+    font-size: 14px;
+  }
+
+  .ifProductCartWrapper {
+    padding: 66px 18px;
+    margin: 0 auto;
+
+    .ifPrInfo h2 {
+      font-size: 23px;
+    }
+  }
+}

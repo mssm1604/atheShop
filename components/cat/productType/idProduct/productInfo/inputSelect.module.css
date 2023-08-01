@@ -1,0 +1,72 @@
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 5px;
+  font-weight: 200;
+  font-size: 16px;
+  letter-spacing: 0.045em;
+
+  .infoWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .infoWrapper label {
+    text-transform: capitalize;
+  }
+
+  .select {
+    min-width: 49px;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 13.7px;
+    letter-spacing: 1.1px;
+    font-weight: 200;
+    color: #00000091;
+  }
+
+  .select.errorr {
+    border: 2px solid rgb(61 33 33 / 20%);
+    background-color: #fc484e78;
+  }
+
+  .errorMessage {
+    display: none;
+    transition: all 200ms ease-in;
+  }
+
+  .errorMessage.active {
+    display: block;
+  }
+
+  .errorMessage p {
+    font-size: 13.11px;
+    font-weight: 500;
+    color: #e8363cca;
+    text-transform: lowercase;
+  }
+
+  .h4 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: min-content;
+    font-weight: 200;
+
+    .span {
+      height: 16px;
+    }
+
+    .span svg {
+      fill: transparent;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+

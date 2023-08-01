@@ -1,47 +1,69 @@
+.isLoading {
+  width: 100%;
+  grid-column: span 4;
+  min-height: 217px;
+  background-color: red;
+  z-index: 9999;
+}
+
 .listOfProducts {
   font-family: "Antic";
   background-color: #ffffff;
   display: grid;
   column-gap: 2px;
-  row-gap: 10px;
+  row-gap: 20px;
   grid-template-columns: repeat(4, 1fr);
+  border-block: 1px solid black;
 }
 
 .listOfProducts .noResults {
-  margin: 25px auto;
-}
+  display: grid;
+  place-content: center;
+  grid-column: span 4;
+  min-height: 217px;
 
-.articleProduct {
-  border: 1px solid transparent;
+  .titleNoResults {
+    text-align: center;
+    text-wrap: balance;
+    font-size: 27px;
+  }
 }
 
 .articleProduct a {
   display: flex;
   flex-direction: column;
-  background-color: #e8e8e8;
-  transition: 200ms;
-  border: 1px solid black;
+  transition: opacity 200ms;
+  border-inline: 1px solid transparent;
+  border-block: 1px solid transparent;
 }
 
 .articleProduct a .productImageOnHover {
-  visibility: hidden;
-}
-
-.articleProduct a:hover .productImage {
-  visibility: hidden;
-}
-
-.articleProduct a:hover .productImageOnHover {
-  visibility: visible;
+  opacity: 0;
+  transition: opacity 200ms;
   object-fit: cover;
 }
 
+.articleProduct .productImage {
+  object-fit: cover;
+  transition: opacity 200ms;
+}
+
+.articleProduct a:hover .productImage {
+  opacity: 0;
+}
+
+.articleProduct a:hover .productImageOnHover {
+  opacity: 1;
+}
+
 .articleProduct a:hover {
-  background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.524);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.524); */
+  /* transform: translateY(-14px); */
 }
 
 .articleProduct .actionIcons {
+  position: absolute;
   display: flex;
   justify-content: flex-end;
   padding-inline: 15px;
@@ -78,6 +100,10 @@
 }
 
 @media (max-width: 1050px) {
+  .listOfProducts .noResults {
+    grid-column: span 3;
+  }
+
   .listOfProducts {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -88,6 +114,11 @@
 }
 
 @media (max-width: 700px) {
+  .listOfProducts .noResults {
+    min-height: 340px;
+    grid-column: span 2;
+  }
+
   .listOfProducts {
     grid-template-columns: repeat(2, 1fr);
   }

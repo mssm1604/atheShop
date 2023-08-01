@@ -4,12 +4,10 @@ import { useFilters } from "./useFilters"
 function useProducts() {
   const { filters, filterProductsFn } = useFilters()
 
-  const getDataFromDb = async (params, idPr) => {
-    const { categorie, productTypeList } = params
-
+  const getDataFromDb = async ({ categorie, productTypeList, idProduct }) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/api/${idPr ? idPr : ""}`,
+        `http://localhost:3000/api/${idProduct ? idProduct : ""}`,
         {
           categorie,
           productTypeList,
@@ -19,6 +17,7 @@ function useProducts() {
       return data.products
     } catch (error) {
       console.log(error)
+    } finally {
     }
   }
 

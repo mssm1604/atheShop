@@ -7,14 +7,14 @@ function ProductCard({ product, imageOnHover, productTypeList }) {
   return (
     <article className={styles.articleProduct}>
       <Link href={`${productTypeList}/${product.prID}`}>
-        <div className={styles.actionIcons}>
+        {/* <div className={styles.actionIcons}>
           <HeartIcon className={styles.heartIcon} />
-        </div>
+        </div> */}
 
         <div className={styles.imgWrapper}>
           <picture>
             <Image
-              src={`/../public/camisaRoja-sinFondo.jpg`}
+              src={`/../public/mujer/ropa/saco.jpg`}
               alt={product.brand}
               fill
               className={styles.productImage}
@@ -23,7 +23,7 @@ function ProductCard({ product, imageOnHover, productTypeList }) {
 
           <picture>
             <Image
-              src={`/../public/${imageOnHover}`}
+              src={`/../public/mujer/ropa/${imageOnHover}`}
               alt={imageOnHover}
               fill
               className={styles.productImageOnHover}
@@ -31,7 +31,7 @@ function ProductCard({ product, imageOnHover, productTypeList }) {
           </picture>
         </div>
 
-        <div className={styles.productFooter}>
+        <footer className={styles.productFooter}>
           <div>
             <h4>{product.brand}</h4>
           </div>
@@ -40,7 +40,7 @@ function ProductCard({ product, imageOnHover, productTypeList }) {
               $ <span>{product.price}</span>
             </p>
           </div>
-        </div>
+        </footer>
       </Link>
     </article>
   )

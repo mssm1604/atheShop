@@ -1,0 +1,262 @@
+.overlay {
+  display: grid;
+  place-items: center;
+
+  background-color: #0000001f;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+
+  .editView {
+    font-family: "Raleway", sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    min-width: 60%;
+    min-height: 80%;
+    margin-top: 70px;
+    padding: 60px 20px;
+
+    background: #e8e8e8;
+    border: 1px solid #000;
+    box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.25);
+
+    .mainContentWrapper {
+      display: flex;
+
+      .selectionsWrapper {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+
+        width: 62%;
+        gap: 100px;
+
+        .title {
+          width: 100%;
+        }
+
+        .title h3 {
+          font-size: 30px;
+          font-weight: 500;
+          letter-spacing: 2.25px;
+          text-transform: uppercase;
+        }
+
+        .title span {
+          font-size: 18px;
+          font-weight: 200;
+          line-height: normal;
+        }
+
+        .optionsWrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 70px;
+          max-width: 75%;
+
+          .input {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 25px;
+            font-weight: 200;
+            padding: 5px 40px 5px 20px;
+            border: 1px solid black;
+
+            .selectorWrapper {
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-content: center;
+              top: -7px;
+              right: 40px;
+              box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.15);
+              border: 1px solid black;
+
+              .select {
+                width: 100%;
+                padding: 14px 30px 14px 20px;
+                border: none;
+                appearance: none;
+                background-color: #e8e8e8;
+                font-size: 20px;
+              }
+
+              .inputSvg {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                right: 0;
+                padding-right: 10px;
+                pointer-events: none;
+              }
+            }
+          }
+        }
+      }
+
+      .pictureAndPrices {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 38%;
+
+        .pictureWrapper {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          height: 60%;
+
+          .img {
+            object-fit: contain;
+            border: 1px solid black;
+          }
+        }
+
+        .prices {
+          display: flex;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .prices div {
+          font-weight: 200;
+          text-align: end;
+
+          .priceLabel {
+            font-size: 22px;
+            font-weight: 200;
+            letter-spacing: 1.8px;
+          }
+
+          &.totalPriceSection span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .saveAndCancelWrapper {
+      display: flex;
+      justify-content: space-evenly;
+
+      .button {
+        width: 42%;
+        padding-block: 7px;
+        border: 1px solid black;
+        background-color: #39dd00;
+        text-transform: uppercase;
+        font-size: 13px;
+      }
+
+      .button.cancelButton {
+        color: #d8d7d7;
+        background-color: #d80000;
+      }
+    }
+  }
+}
+
+@media (max-width: 1010px) {
+  .overlay {
+    .editView {
+      min-width: 80%;
+      max-width: 95%;
+    }
+  }
+}
+
+@media (max-width: 670px) {
+  .overlay {
+    .editView {
+      min-width: 90%;
+      max-width: 95%;
+      min-height: 85%;
+      margin-top: 0;
+      gap: 25px;
+      padding: 20px 10px;
+
+      .mainContentWrapper {
+        flex-direction: column-reverse;
+        gap: 40px;
+
+        .selectionsWrapper {
+          width: 100%;
+          gap: 25px;
+          padding-inline: 14px;
+
+          .title h3 {
+            font-size: 20px;
+          }
+
+          .title span {
+            font-size: 16px;
+          }
+
+          .optionsWrapper {
+            gap: 30px;
+            max-width: 100%;
+
+            .input {
+              font-size: 17px;
+
+              .selectorWrapper {
+                top: -5.5px;
+
+                .select {
+                  padding: 10px 25px 10px 15px;
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+
+        .pictureAndPrices {
+          flex-direction: row;
+          width: 100%;
+
+          .pictureWrapper {
+            width: 55%;
+            height: 230px;
+          }
+
+          .prices {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .prices div {
+            padding-left: 10px;
+
+            .priceLabel {
+              font-size: 17px;
+            }
+          }
+        }
+      }
+
+      .saveAndCancelWrapper {
+        flex-direction: column;
+        gap: 15px;
+        padding-inline: 20px;
+
+        .button {
+          width: 100%;
+          padding-block: 7px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

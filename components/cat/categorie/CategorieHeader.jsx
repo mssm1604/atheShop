@@ -2,6 +2,7 @@ import styles from "./categorieHeader.module.css"
 import Image from "next/image"
 
 function CategorieHeader({ categorieTitle }) {
+
   return (
     <section className={styles.header}>
       <Image

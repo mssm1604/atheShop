@@ -8,8 +8,9 @@ import {
   womenSubCatSections,
 } from "@/public/subCategoriesContent/subCategories"
 
-async function SubCategoriesSection({ params }) {
+function SubCategoriesSection({ params }) {
   const { categorie } = params
+
   let subCategories
 
   categorie === "mujer" && (subCategories = womenSubCatSections)
