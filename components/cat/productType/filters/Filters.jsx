@@ -1,65 +1,113 @@
 "use client"
 
-import { ArrowRight } from "@/components/icons/Icons"
-import { useFilters } from "@/hooks/useFilters"
 import styles from "./Filters.module.css"
-import { useRef } from "react"
+import { ArrowRight, Check, Close, Filter } from "@/components/icons/Icons"
+import { useFilters } from "@/hooks/useFilters"
+import { useRef, useState } from "react"
 
 function Filters({ sectionName }) {
+  const [productTypeOptions, setProductTypeOptions] = useState([])
   const { filters, setFilters } = useFilters()
-  const filtersSection = useRef()
 
-  const handleChangeMinPrice = (event) => {
-    setFilters((prevState) => ({
-      ...prevState,
-      minPrice: event.target.value,
-    }))
-  }
-
-  const handleChangeCategory = (event) => {
-    setFilters((prevState) => ({
-      ...prevState,
-      brand: event.target.value,
-    }))
-  }
+  const filtersAndSelections = useRef()
+  const productTypeSection = useRef()
+  const orderBySection = useRef()
+  const selectionsSection = useRef()
 
   const handleOnMouseEnter = (e) => {
-    const idItem = e.target.parentElement.id
-    const target = e.target
+    const currentElemetId = e.target.id
+    const cssStyles =
+      "display:flex; border:1px solid black; padding-block: 10px; bottom:auto;"
 
-    if (idItem === "filtersSection") {
-      filtersSection.current.style.cssText =
-        "border:1px solid black; padding-block: 10px; bottom:auto;"
-    } else if (idItem === "orderBySection") {
+    const sectionsToShow = {
+      productTypeSection,
+      orderBySection,
+      selectionsSection,
+    }
+
+    sectionsToShow[currentElemetId].current.style.cssText = cssStyles
+  }
+
+  const handleOnMouseLeave = (e) => {
+    const childItem = e.target.parentElement.lastChild
+    childItem.style.cssText = "display:none; bottom:0;"
+  }
+
+  const handleOptionClick = (e) => {
+    const parentE = e.target.parentElement
+    const parentElValue = e.target.parentElement.id
+
+    const ifItemSelected = parentE.getAttribute("data-selected")
+
+    if (ifItemSelected == "true") {
+      parentE.setAttribute("data-selected", false)
+
+      const filterdOptions = productTypeOptions?.filter(
+        (value) => value !== parentElValue
+      )
+
+      filterdOptions.length <= 0
+        ? setProductTypeOptions("all")
+        : setProductTypeOptions(filterdOptions)
     } else {
+      parentE.setAttribute("data-selected", true)
+      setProductTypeOptions((prevState) =>
+        prevState !== "all" ? [...prevState, parentElValue] : [parentElValue]
+      )
     }
   }
-  const handleOnMouseLeave = (e) => {
-    const idItem = e.target.parentElement.id
-    const target = e.target
 
-    if (idItem == "filtersSection") {
-      filtersSection.current.style.cssText = "bottom:0"
-    } else if (idItem === "orderBySection") {
+  const handleApplyChanges = () => {
+    setFilters((prevState) => ({
+      ...prevState,
+      productType: productTypeOptions,
+    }))
+  }
+
+  const handleOrderByClick = (e) => {
+    const valueToSet = e.target.id
+    setFilters((prevState) => ({ ...prevState, orderBy: valueToSet }))
+  }
+
+  const handleShowFiltersSection = () => {
+    const ifFiltersVisible =
+      filtersAndSelections.current.getAttribute("data-visible")
+
+    if (ifFiltersVisible === "false") {
+      filtersAndSelections.current.setAttribute("data-visible", true)
     } else {
+      filtersAndSelections.current.setAttribute("data-visible", false)
     }
   }
 
   return (
     <section className={`${styles.flexRow} ${styles.filtersBar}`}>
       <div className={styles.sectionName}>
-        <h4>{`${sectionName?.productTypeList} para ${sectionName?.categorie}`}</h4>
+        <h4>{`${sectionName?.subCategorie} para ${sectionName?.categorie}`}</h4>
       </div>
 
-      <div className={`${styles.flexRow} ${styles.filtersAndSelections}`}>
+      <div
+        ref={filtersAndSelections}
+        data-visible="false"
+        className={`${styles.flexRow} ${styles.filtersAndSelections}`}
+      >
+        <header className={`${styles.headerFiltersSection}`}>
+          <h2>Filtros</h2>
+
+          <span>
+            <Close />
+          </span>
+        </header>
         <div className={`${styles.flexRow} ${styles.filters}`}>
           <div
-            id="filtersSection"
-            className={`${styles.groupWrapper} ${styles.filtersSection}`}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
+            className={`${styles.groupWrapper}`}
           >
-            <button className={`${styles.flexRow} ${styles.filterButton}`}>
+            <button
+              id="productTypeSection"
+              className={`${styles.flexRow} ${styles.filterButton}`}
+            >
               Filtros{" "}
               <span>
                 <ArrowRight />
@@ -67,145 +115,157 @@ function Filters({ sectionName }) {
             </button>
 
             <section
-              ref={filtersSection}
+              ref={productTypeSection}
               className={`${styles.filtersOptionsWrapper}`}
             >
               <div
                 className={`${styles.flexColumn} ${styles.listOptionsWrapper}`}
               >
                 <section
-                  className={`${styles.listWrapper} ${styles.productTypeList}`}
+                  className={`${styles.flexColumn} ${styles.listWrapper} ${styles.productTypeList}`}
                 >
                   <h4>tipo de producto</h4>
-                  <ul className={`${styles.flexRow} ${styles.filtersOptions}`}>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
+                  <ul
+                    onClick={handleOptionClick}
+                    className={`${styles.flexRow} ${styles.filtersOptions}`}
+                  >
+                    <li id="pantalon" data-selected="false">
+                      <span className={styles.spanWrapper}>
+                        <Check />
                       </span>
-                      pantalones
+                      <span>pantalón</span>
                     </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
+                    <li id="zapatos" data-selected="false">
+                      <span className={styles.spanWrapper}>
+                        <Check />
                       </span>
-                      pantalones
+                      <span> zapatos</span>
                     </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
+                    <li id="camisas" data-selected="false">
+                      <span className={styles.spanWrapper}>
+                        <Check />
                       </span>
-                      pantalones
+                      <span> camisas</span>
                     </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
+                    <li id="sudaderas" data-selected="false">
+                      <span className={styles.spanWrapper}>
+                        <Check />
                       </span>
-                      camisetas
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      camisas
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      sudaderas
-                    </li>
-                  </ul>
-                </section>
-                <section
-                  className={`${styles.listWrapper} ${styles.productTypeList}`}
-                >
-                  <h4>tipo de producto</h4>
-                  <ul className={`${styles.flexRow} ${styles.filtersOptions}`}>
-                    <li>pantalones</li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      pantalones
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      pantalones
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      camisetas
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      camisas
-                    </li>
-                    <li>
-                      <span>
-                        <input type="checkbox" name="" id="" />
-                      </span>
-                      sudaderas
+                      <span> sudaderas</span>
                     </li>
                   </ul>
                 </section>
               </div>
-              <button>apply changes</button>
+              <div className={`${styles.flexRow} ${styles.buttonsWrapper}`}>
+                <button
+                  className={styles.btnApplyChanges}
+                  onClick={handleApplyChanges}
+                >
+                  Aplicar cambios
+                </button>
+
+                <button className={styles.btnClearSelections}>
+                  Quitar selecciones
+                </button>
+              </div>
             </section>
           </div>
+
           <div
-            id="orderBySection"
             className={`${styles.groupWrapper} ${styles.orderBy}`}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           >
-            <button className={`${styles.flexRow} ${styles.filterButton}`}>
-              Ordenar por{" "}
+            <button
+              id="orderBySection"
+              className={`${styles.flexRow} ${styles.filterButton}`}
+            >
+              <div style={{ pointerEvents: "none" }}>
+                Ordenar por
+                <span className={styles.selectedOptionSpan}>
+                  {filters?.orderBy !== "none" &&
+                    ` ${
+                      filters?.orderBy == "low-high"
+                        ? "precio bajo - alto"
+                        : "precio alto - bajo"
+                    }`}
+                </span>
+              </div>
               <span>
                 <ArrowRight />
               </span>
             </button>
+
+            <section
+              ref={orderBySection}
+              className={styles.orderByOptionsWrapper}
+            >
+              <div className={styles.orderByOptions}>
+                <ul
+                  onClick={handleOrderByClick}
+                  className={`${styles.flexColumn} ${styles.orderByList}`}
+                >
+                  <li id="low-high">Precio bajo - alto</li>
+                  <li id="high-low">Precio alto - bajo</li>
+                </ul>
+              </div>
+            </section>
           </div>
         </div>
 
-        <div
-          id="selectionsSection"
-          className={`${styles.groupWrapper} ${styles.selections}`}
-          onMouseEnter={handleOnMouseEnter}
-          onMouseLeave={handleOnMouseLeave}
-        >
-          <button className={`${styles.flexRow} ${styles.filterButton}`}>
-            Selecciones{" "}
-            <span>
-              <ArrowRight />
-            </span>
-          </button>
+        <div className={`${styles.selections}`}>
+          <div
+            className={`${styles.groupWrapper} ${styles.selectionsWrapper} `}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          >
+            <button
+              id="selectionsSection"
+              className={`${styles.flexRow} ${styles.filterButton}`}
+            >
+              Selecciones{" "}
+              <span>
+                <ArrowRight />
+              </span>
+            </button>
+
+            <section
+              ref={selectionsSection}
+              className={styles.selectionsSummaryWrapper}
+            >
+              <div className={styles.selectionsListWrapper}>
+                {filters.productType == "all" ? (
+                  <h4>No hay filtros seleccionados</h4>
+                ) : (
+                  <>
+                    <h4>Tipo de producto</h4>
+                    <ul
+                      onClick={handleOrderByClick}
+                      className={`${styles.flexColumn} ${styles.selectionsList}`}
+                    >
+                      {filters.productType?.map((value) => (
+                        <li key={value}>{value}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
 
-      {/* <div className={styles.filtersSummary}>
-        <div className={styles.summaryList}>
-          <ul>
-            {Object.entries(filters).map((key, value) => (
-              <li key={key}>
-                <button>
-                  <h4>
-                    {`${key}`}
-                    <span>
-                      <Close />
-                    </span>
-                  </h4>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div> */}
+      <div className={styles.filtersButtonWrapper}>
+        <button
+          onClick={handleShowFiltersSection}
+          className={`${styles.flexRow} ${styles.button}`}
+        >
+          Filtros
+          <span>
+            <Filter />
+          </span>
+        </button>
+      </div>
     </section>
   )
 }

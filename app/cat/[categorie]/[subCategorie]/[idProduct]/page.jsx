@@ -5,11 +5,21 @@ import Image from "next/image"
 import { Header } from "@/components/header/Header"
 import { Slider } from "@/components/cat/productType/idProduct/Slider"
 import { ProductInfo } from "@/components/cat/productType/idProduct/ProductInfo"
-import { useProductView } from "@/hooks/useProductView"
+import { useEffect, useState } from "react"
+import { getProducts } from "@/services/getProducts"
+
+function useGetItem(params) {
+  const [product, setProduct] = useState()
+
+  useEffect(() => {
+    getProducts({ params }).then(([res]) => setProduct(res))
+  }, [])
+
+  return product
+}
 
 function ProductView({ params }) {
-  const product = useProductView(params)
-
+  const product = useGetItem(params)
   return (
     <>
       <Header headType={"productsView"} />
@@ -17,7 +27,7 @@ function ProductView({ params }) {
         <main className={styles.mainInfoWrapper}>
           <section className={styles.productPictures}>
             <ul>
-              {product.images?.colection.map((image, index) => (
+              {product?.images?.map((image, index) => (
                 <li key={index}>
                   <Image
                     src={image}
@@ -29,8 +39,11 @@ function ProductView({ params }) {
             </ul>
           </section>
 
-          <Slider carouselImages={product.images?.colection} />
-          <ProductInfo product={product} ifProductInCartId={params.idProduct} />
+          <Slider carouselImages={product?.images} />
+          <ProductInfo
+            product={product ? product : ""}
+            ifProductInCartId={params.idProduct}
+          />
         </main>
 
         <section className={styles.productDescription}>

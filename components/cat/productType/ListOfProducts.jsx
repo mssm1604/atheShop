@@ -1,14 +1,14 @@
 import { ProductCard } from "./ProductCard"
 import styles from "./productType.module.css"
 
-function ListOfProducts({ products, loading, productTypeList }) {
+function ListOfProducts({ products, productTypeList }) {
   return (
     <section className={`${styles.listOfProducts}`}>
-      {products ? (
-        products?.map((item, index) => (
+      {products?.length > 0 ? (
+        products?.map((product) => (
           <ProductCard
-            key={index}
-            product={item}
+            key={product.id}
+            product={product}
             productTypeList={productTypeList}
             imageOnHover={"sacoV3.jpg"}
           />

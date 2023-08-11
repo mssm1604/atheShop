@@ -7,6 +7,7 @@ import { useProductInfo } from "@/hooks/useProductInfo"
 import { IfProductInCartSection } from "./productInfo/IfProductInCart"
 
 export function ProductInfo({ product, ifProductInCartId }) {
+  const { prodName, prodType, price } = product
   const [size, setSize] = useState(null)
   const [quantity, setQuantity] = useState(null)
   const sizes = ["XS", "S", "M", "L", "XL"]
@@ -28,11 +29,11 @@ export function ProductInfo({ product, ifProductInCartId }) {
         <section className={styles.titleAndPrice}>
           <article>
             <div className={styles.titleWrapper}>
-              <h4>{product.brand}</h4>
-              <p>{product.productType}</p>
+              <h4>{prodName}</h4>
+              <p>{prodType}</p>
             </div>
             <div className={styles.priceWrapper}>
-              $ <span>{product.price}</span>
+              $ <span>{price}</span>
             </div>
           </article>
         </section>

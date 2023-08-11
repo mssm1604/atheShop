@@ -13,7 +13,7 @@ async function query({ query, values = [] }) {
     dbconnection.end()
     return results
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 }
 

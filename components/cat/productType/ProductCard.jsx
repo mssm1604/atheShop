@@ -1,21 +1,17 @@
 import styles from "./productType.module.css"
 import Image from "next/image"
-import { HeartIcon } from "@/components/icons/Icons"
 import Link from "next/link"
 
 function ProductCard({ product, imageOnHover, productTypeList }) {
+  const { id, prodName, price } = product
   return (
     <article className={styles.articleProduct}>
-      <Link href={`${productTypeList}/${product.prID}`}>
-        {/* <div className={styles.actionIcons}>
-          <HeartIcon className={styles.heartIcon} />
-        </div> */}
-
+      <Link href={`${productTypeList}/${id}`}>
         <div className={styles.imgWrapper}>
           <picture>
             <Image
               src={`/../public/mujer/ropa/saco.jpg`}
-              alt={product.brand}
+              alt={prodName}
               fill
               className={styles.productImage}
             />
@@ -33,11 +29,11 @@ function ProductCard({ product, imageOnHover, productTypeList }) {
 
         <footer className={styles.productFooter}>
           <div>
-            <h4>{product.brand}</h4>
+            <h4>{prodName}</h4>
           </div>
           <div>
             <p>
-              $ <span>{product.price}</span>
+              $ <span>{price}</span>
             </p>
           </div>
         </footer>

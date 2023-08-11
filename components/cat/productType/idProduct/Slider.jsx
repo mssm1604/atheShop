@@ -9,7 +9,7 @@ export function Slider({ carouselImages }) {
   const carouselFocus = useRef()
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const selectNextImage = (index, arrImages, ifNext = true) => {
+  const selectNextImage = (index, carouselImages, ifNext = true) => {
     const condition = ifNext ? index < carouselImages?.length - 1 : index > 0
     const moveValue = 100 / carouselImages?.length
 

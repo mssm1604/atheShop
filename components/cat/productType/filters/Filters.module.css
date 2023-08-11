@@ -10,14 +10,18 @@
 
 .filtersBar {
   font-family: "Raleway", sans-serif;
+  font-variant: all-small-caps;
   letter-spacing: 0.08em;
 
   justify-content: space-between;
-  align-items: center;
   background: #f2f2f2;
 
+  .headerFiltersSection {
+    display: none;
+  }
+
   .sectionName {
-    margin-left: 25px;
+    margin: 5px 25px;
     padding: 2px 16px;
     border-inline: 1px black inset;
   }
@@ -25,7 +29,6 @@
   .sectionName h4 {
     font-size: 16px;
     font-weight: 400;
-    font-variant: all-small-caps;
   }
 
   .filtersAndSelections {
@@ -33,61 +36,175 @@
     font-size: 18px;
     font-variant: all-small-caps;
     font-weight: 500;
-    height: 100%;
     gap: 50px;
     background: #fff;
 
     .filters,
     .selections {
       border-inline: 1px solid black;
-      /* padding: 5px 23px; */
+      padding-inline: 23px;
     }
 
     .filters {
-      gap: 35px;
+      align-items: center;
+      gap: 55px;
 
       .filtersOptionsWrapper {
+        display: none;
+        flex-direction: column;
         position: absolute;
-        top: 30.5px;
+        top: 32.5px;
         bottom: 0;
         right: 0;
         left: 0;
-        padding-inline:20px; 
+        padding-inline: 20px;
         background-color: #ffffff;
         z-index: 4;
-        /* transition: padding-block 200ms ease-out; */
-        overflow: hidden;
+        gap: 20px;
+
+        .buttonsWrapper {
+          justify-content: space-between;
+        }
+
+        .btnApplyChanges {
+          width: auto;
+          font-variant: normal;
+          text-transform: uppercase;
+          font-size: 12px;
+          color: rgb(216, 216, 216);
+          padding: 5px 10px;
+          border: 1px solid rgba(0, 0, 0, 0.223);
+          background-color: #000000;
+          cursor: pointer;
+          transition: background-color 150ms ease-out, scale 200ms;
+        }
+
+        .btnApplyChanges:hover {
+          scale: 1.02;
+        }
+
+        .btnClearSelections {
+          letter-spacing: 1px;
+          font-size: 14px;
+        }
 
         .listOptionsWrapper {
-          gap: 20px;
+          gap: 25px;
+
+          .listWrapper {
+            gap: 10px;
+          }
         }
 
         .filtersOptions {
-          column-gap: 8px;
+          column-gap: 20px;
           row-gap: 3px;
           flex-wrap: wrap;
         }
 
         .filtersOptions li {
-          align-content: center;
+          align-items: center;
+          justify-content: center;
           font-variant: normal;
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 200;
           text-transform: capitalize;
           display: flex;
-          gap: 3px;
+          gap: 6px;
+          cursor: pointer;
+
+          .spanWrapper {
+            aspect-ratio: 1/1;
+            min-height: 20px;
+            padding-inline: 2px;
+            border: 1px solid black;
+          }
         }
+
+        .filtersOptions li span svg {
+          pointer-events: none;
+          transform: scale(0);
+
+          transition: transform 100ms ease-out;
+        }
+
+        .filtersOptions li[data-selected="true"] .spanWrapper svg {
+          transform: scale(1);
+        }
+      }
+
+      .orderBy {
+        position: relative;
+      }
+
+      .orderByOptionsWrapper {
+        display: none;
+        justify-content: center;
+        position: absolute;
+        top: 31.5px;
+        left: -22px;
+        right: -24px;
+        z-index: 4;
+        background-color: #ffffff;
+        padding-inline: 5px;
+
+        .orderByList {
+          font-weight: 400;
+          font-size: 16px;
+          gap: 10px;
+        }
+
+        .orderByList li {
+          color: rgba(0, 0, 0, 0.61);
+          padding: 2.5px 10px;
+          border: 1px solid rgba(0, 0, 0, 0.223);
+          background-color: #f0f0f0;
+          cursor: pointer;
+          transition: background-color 150ms ease-out, color 400ms;
+        }
+
+        .orderByList li:hover {
+          color: black;
+          background-color: #d9d9d9;
+        }
+      }
+    }
+
+    .selections {
+      border: none;
+      border-left: 1px solid black;
+      .selectionsSummaryWrapper {
+        display: none;
+        position: absolute;
+        z-index: 4;
+        top: 32.5px;
+        right: 0;
+        left: 0;
+        background-color: #fff;
+        padding-inline: 20px;
       }
     }
   }
 
   .filterButton {
-    padding: 5px 23px;
+    padding-block: 5px;
     gap: 7px;
   }
 
+  .filterButton > div {
+    display: flex;
+    gap: 7px;
+    align-items: baseline;
+
+    .selectedOptionSpan {
+      font-size: 14px;
+      color: #7f7f7f;
+    }
+  }
+
   .filterButton span {
-    transition: transform 300ms ease-out;
+    pointer-events: none;
+    transition: transform 200ms ease-out;
   }
 
   .filterButton span svg {
@@ -97,11 +214,58 @@
     transform: rotate(90deg);
   }
 
-  .groupWrapper:hover .filterButton span {
-    transform: rotate(-180deg) translateY(-2px);
+  .groupWrapper:hover .filterButton > span {
+    transform: rotate(-180deg) translateY(-3px);
+  }
+}
+
+.filtersButtonWrapper {
+  display: none;
+  height: 100%;
+
+  .button {
+    text-transform: uppercase;
+    font-variant: normal;
+    align-content: center;
+    gap: 6px;
+    font-size: 13px;
+    transition: border 2000ms ease-out;
   }
 
-  .selections {
-    padding-inline: 15px;
+  .button span {
+    height: min-content;
+  }
+}
+
+@media (max-width: 900px) {
+  .filtersAndSelections {
+    display: none;
+    transition: all 300ms ease-out;
+    transform: translateX(-100%);
+  }
+
+  .filtersAndSelections[data-visible="true"] {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 6;
+    transform: translateX(0%);
+  }
+
+  .headerFiltersSection {
+    display: flex !important;
+  }
+
+  .headerFiltersSection span svg {
+    fill: #000000;
+    width: 17px;
+    height: 17px;
+  }
+
+  .filtersButtonWrapper {
+    display: block;
+    padding-inline: 25px;
   }
 }

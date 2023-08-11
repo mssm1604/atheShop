@@ -12,12 +12,12 @@ export function CartProvider({ children }) {
     return cart.findIndex((item) => item.id == idPr)
   }
 
-  const addToCart = (product, qt, size) => {
+  const addToCart = ({ id, prodName, prodType, price }, qt, size) => {
     const productLayout = {
-      id: product.prID,
-      brand: product.brand,
-      productType: product.productType,
-      price: product.price,
+      id,
+      prodName,
+      prodType,
+      price,
     }
 
     const productInCartIndex = findProductInCart(productLayout.id)
@@ -25,7 +25,7 @@ export function CartProvider({ children }) {
     if (productInCartIndex >= 0) {
       const newCart = structuredClone(cart)
       newCart[productInCartIndex].quantity += qt
-      localStorage.setItem("cart", JSON.stringify(newCart))
+      window.localStorage.setItem("cart", JSON.stringify(newCart))
       return setCart(newCart)
     }
 
@@ -38,7 +38,7 @@ export function CartProvider({ children }) {
       },
     ])
 
-    localStorage.setItem(
+    window.localStorage.setItem(
       "cart",
       JSON.stringify([
         ...prevCart,
@@ -49,7 +49,6 @@ export function CartProvider({ children }) {
         },
       ])
     )
-
   }
 
   const clearCart = () => {
@@ -59,7 +58,7 @@ export function CartProvider({ children }) {
   const deleteFromCart = (productToDeleteId) => {
     const newCart = cart.filter((item) => item.id != productToDeleteId)
     setCart(newCart)
-    localStorage.setItem("cart", JSON.stringify(newCart))
+    window.localStorage.setItem("cart", JSON.stringify(newCart))
   }
 
   const updateProduct = (productToUpdateId, { cantidad, talla }) => {
@@ -69,7 +68,7 @@ export function CartProvider({ children }) {
     newCart[productInCartIndex].quantity = cantidad
     newCart[productInCartIndex].size = talla
 
-    localStorage.setItem("cart", JSON.stringify(newCart))
+    window.localStorage.setItem("cart", JSON.stringify(newCart))
     setCart(newCart)
   }
 
