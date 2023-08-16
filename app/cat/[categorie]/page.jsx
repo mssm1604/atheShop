@@ -25,7 +25,7 @@ function SubCategoriesSection({ params }) {
 
       <main className={styles.main}>
         <section className={`${styles.categoriesSection}`}>
-          {subCategories.map((product) => (
+          {subCategories?.map((product) => (
             <SubCatArticles
               key={product.title}
               productData={product}
