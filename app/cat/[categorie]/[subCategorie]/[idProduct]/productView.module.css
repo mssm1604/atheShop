@@ -1,216 +1,217 @@
 .pageWrapper {
-  position: relative;
-  background-color: rgb(222, 219, 219);
-  width: 100%;
-  height: 100%;
+	position: relative;
+	background-color: rgb(222, 219, 219);
+	width: 100%;
+	height: 100%;
 }
 
 .mainInfoWrapper {
-  position: relative;
-  display: flex;
-  width: 100%;
-  background-color: #e8e8e8;
+	position: relative;
+	display: flex;
+	width: 100%;
+	background-color: #e8e8e8;
+	min-height: 90vh;
 }
 
 .productPictures {
-  position: relative;
-  width: 65%;
-  height: fit-content;
+	position: relative;
+	width: 65%;
+	height: fit-content;
 }
 
 .productPictures ul {
-  position: relative;
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 100%;
 }
 
 .productPictures ul li {
-  position: relative;
-  height: 600px;
-  width: 50%;
+	position: relative;
+	height: 600px;
+	width: 50%;
 }
 
 .productPictures ul li:first-child {
-  width: 100%;
+	width: 100%;
 }
 
 .productPictures ul li img {
-  object-fit: cover;
-  padding: 0.5px;
-  width: 100%;
-  height: 100%;
+	object-fit: cover;
+	padding: 0.5px;
+	width: 100%;
+	height: 100%;
 }
 
 .productDescription {
-  font-family: "Poppins", sans-serif;
-  display: flex;
-  gap: 50px;
-  margin: 50px 60px 150px;
-  padding: 40px 30px;
-  color: rgb(0, 0, 0);
-  background-color: #cecece;
+	font-family: 'Poppins', sans-serif;
+	display: flex;
+	gap: 50px;
+	margin: 50px 60px 150px;
+	padding: 40px 30px;
+	color: rgb(0, 0, 0);
+	background-color: #cecece;
 
-  .description {
-    display: grid;
-    place-items: center;
-    width: 50%;
-    padding-inline: 70px;
-  }
+	.description {
+		display: grid;
+		place-items: center;
+		width: 50%;
+		padding-inline: 70px;
+	}
 
-  .description p {
-    font-weight: 100;
-    font-size: 20px;
-    line-height: 125%;
-    letter-spacing: 0.05em;
-  }
+	.description p {
+		font-weight: 100;
+		font-size: 20px;
+		line-height: 125%;
+		letter-spacing: 0.05em;
+	}
 
-  .details {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    width: 50%;
-    border-left: 2px solid rgba(0, 0, 0, 0.121);
-    border-radius: 1px;
-  }
+	.details {
+		display: flex;
+		flex-direction: column;
+		gap: 35px;
+		width: 50%;
+		border-left: 2px solid rgba(0, 0, 0, 0.121);
+		border-radius: 1px;
+	}
 
-  .details h3 {
-    font-weight: 200;
-    font-size: 25px;
-    line-height: 100%;
-    text-align: center;
-  }
+	.details h3 {
+		font-weight: 200;
+		font-size: 25px;
+		line-height: 100%;
+		text-align: center;
+	}
 
-  .details ul {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    font-weight: 200;
-    font-size: 18px;
-    line-height: 100%;
-    padding-left: 70px;
-  }
+	.details ul {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		font-weight: 200;
+		font-size: 18px;
+		line-height: 100%;
+		padding-left: 70px;
+	}
 
-  .details ul li {
-    list-style: disc;
-  }
+	.details ul li {
+		list-style: disc;
+	}
 }
 
 .relatedProducts {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
 
-  .relatedProductsList {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    width: 100%;
-    height: 100%;
-    gap: 15px;
-  }
+	.relatedProductsList {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		width: 100%;
+		height: 100%;
+		gap: 15px;
+	}
 
-  .relatedProductsList li {
-    position: relative;
-    height: 600px;
-    width: 100%;
-  }
+	.relatedProductsList li {
+		position: relative;
+		height: 600px;
+		width: 100%;
+	}
 
-  .relatedProductsList img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+	.relatedProductsList img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .relatedProducts h2 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-size: 30px;
-  line-height: 100%;
-  text-transform: uppercase;
-  text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 100;
+	font-size: 30px;
+	line-height: 100%;
+	text-transform: uppercase;
+	text-align: center;
 }
 
 @media (max-width: 500px) {
-  .productInfo {
-    .titleAndPrice {
-      padding: 0;
-      padding-block: 20px;
-    }
+	.productInfo {
+		.titleAndPrice {
+			padding: 0;
+			padding-block: 20px;
+		}
 
-    .titleWrapper h4 {
-      font-size: 23px;
-    }
+		.titleWrapper h4 {
+			font-size: 23px;
+		}
 
-    .titleWrapper p {
-      font-size: 14px;
-    }
+		.titleWrapper p {
+			font-size: 14px;
+		}
 
-    .priceWrapper,
-    .priceWrapper span {
-      font-size: 16px;
-    }
-  }
+		.priceWrapper,
+		.priceWrapper span {
+			font-size: 16px;
+		}
+	}
 
-  .productDescription {
-    flex-direction: column;
-    margin: 0px;
-    padding: 15px 25px;
-    gap: 30px;
+	.productDescription {
+		flex-direction: column;
+		margin: 0px;
+		padding: 15px 25px;
+		gap: 30px;
 
-    .description {
-      width: 100%;
-      padding-inline: 0px;
-    }
-  }
+		.description {
+			width: 100%;
+			padding-inline: 0px;
+		}
+	}
 }
 
 @media (max-width: 920px) {
-  .mainInfoWrapper {
-    flex-direction: column;
+	.mainInfoWrapper {
+		flex-direction: column;
 
-    .productPictures {
-      display: none;
-    }
-  }
+		.productPictures {
+			display: none;
+		}
+	}
 
-  .productDescription {
-    flex-direction: column;
-    margin-block: 100px;
-    padding: 15px 25px;
-    gap: 30px;
+	.productDescription {
+		flex-direction: column;
+		margin-block: 100px;
+		padding: 15px 25px;
+		gap: 30px;
 
-    .description {
-      width: 100%;
-      padding-inline: 0px;
-    }
+		.description {
+			width: 100%;
+			padding-inline: 0px;
+		}
 
-    .details {
-      gap: 25px;
-      width: 100%;
-      border: none;
-      border-top: 2px solid rgba(0, 0, 0, 0.135);
-      border-radius: 1px;
-      padding-block: 30px 15px;
-    }
+		.details {
+			gap: 25px;
+			width: 100%;
+			border: none;
+			border-top: 2px solid rgba(0, 0, 0, 0.135);
+			border-radius: 1px;
+			padding-block: 30px 15px;
+		}
 
-    .details ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      row-gap: 15px;
-      padding-left: 25px;
-    }
+		.details ul {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			row-gap: 15px;
+			padding-left: 25px;
+		}
 
-    .details ul li {
-      flex-basis: 40%;
-      max-width: 40%;
-      list-style: disc;
-    }
-  }
+		.details ul li {
+			flex-basis: 40%;
+			max-width: 40%;
+			list-style: disc;
+		}
+	}
 }

@@ -11,9 +11,9 @@ export function Categorie({
     <article className={`${styles.contArticle} ${styles.articleMens}`}>
       <Link href={`/cat/${categorie}`}>
         <Image
-          src={`/../public/${urlLink}`}
+          src={`/${urlLink}`}
           alt={`${categorie} main picture`}
-          fill={true}
+          fill
           className={`${styles.artBg}`}
         />
       </Link>

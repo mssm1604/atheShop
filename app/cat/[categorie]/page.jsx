@@ -1,4 +1,4 @@
-import styles from "./men.module.css"
+import styles from "./subCategories.module.css"
 import { SubCatArticles } from "@/components/cat/categorie/SubCatArticles"
 import { CategorieHeader } from "@/components/cat/categorie/CategorieHeader"
 import { Header } from "@/components/header/Header"

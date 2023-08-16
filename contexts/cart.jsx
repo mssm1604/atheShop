@@ -1,89 +1,94 @@
-"use client"
+'use client'
 
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from 'react'
 
 export const CartContext = createContext()
 
 export function CartProvider({ children }) {
-  const prevCart = JSON.parse(localStorage.getItem("cart")) || []
-  const [cart, setCart] = useState(prevCart)
+	const [cart, setCart] = useState([])
 
-  const findProductInCart = (idPr) => {
-    return cart.findIndex((item) => item.id == idPr)
-  }
+	useEffect(() => {
+		const prevCart = JSON.parse(localStorage.getItem('cart')) || []
+		setCart(prevCart)
+	}, [])
 
-  const addToCart = ({ id, prodName, prodType, price }, qt, size) => {
-    const productLayout = {
-      id,
-      prodName,
-      prodType,
-      price,
-    }
+	const findProductInCart = idPr => {
+		return cart.findIndex(item => item.id == idPr)
+	}
 
-    const productInCartIndex = findProductInCart(productLayout.id)
+	const addToCart = ({ id, prodName, price, images, quantity, size }) => {
+		const imageToUse = images[0]
 
-    if (productInCartIndex >= 0) {
-      const newCart = structuredClone(cart)
-      newCart[productInCartIndex].quantity += qt
-      window.localStorage.setItem("cart", JSON.stringify(newCart))
-      return setCart(newCart)
-    }
+		const productInCartIndex = findProductInCart(id)
 
-    setCart((prevState) => [
-      ...prevState,
-      {
-        ...productLayout,
-        quantity: qt,
-        size: size,
-      },
-    ])
+		if (productInCartIndex >= 0) {
+			const newCart = structuredClone(cart)
+			newCart[productInCartIndex].quantity += quantity
+			window.localStorage.setItem('cart', JSON.stringify(newCart))
+			return setCart(newCart)
+		}
 
-    window.localStorage.setItem(
-      "cart",
-      JSON.stringify([
-        ...prevCart,
-        {
-          ...productLayout,
-          quantity: qt,
-          size,
-        },
-      ])
-    )
-  }
+		setCart(prevState => [
+			...prevState,
+			{
+				id,
+				prodName,
+				price,
+				imageToUse,
+				quantity,
+				size,
+			},
+		])
 
-  const clearCart = () => {
-    setCart([])
-  }
+		localStorage.setItem(
+			'cart',
+			JSON.stringify([
+				...cart,
+				{
+					id,
+					prodName,
+					price,
+					imageToUse,
+					quantity,
+					size,
+				},
+			])
+		)
+	}
 
-  const deleteFromCart = (productToDeleteId) => {
-    const newCart = cart.filter((item) => item.id != productToDeleteId)
-    setCart(newCart)
-    window.localStorage.setItem("cart", JSON.stringify(newCart))
-  }
+	const clearCart = () => {
+		setCart([])
+	}
 
-  const updateProduct = (productToUpdateId, { cantidad, talla }) => {
-    const productInCartIndex = findProductInCart(productToUpdateId)
-    const newCart = structuredClone(cart)
+	const deleteFromCart = productToDeleteId => {
+		const newCart = cart.filter(item => item.id != productToDeleteId)
+		setCart(newCart)
+		localStorage.setItem('cart', JSON.stringify(newCart))
+	}
 
-    newCart[productInCartIndex].quantity = cantidad
-    newCart[productInCartIndex].size = talla
+	const updateProduct = (productToUpdateId, { cantidad, talla }) => {
+		const productInCartIndex = findProductInCart(productToUpdateId)
+		const newCart = structuredClone(cart)
 
-    window.localStorage.setItem("cart", JSON.stringify(newCart))
-    setCart(newCart)
-  }
+		newCart[productInCartIndex].quantity = cantidad
+		newCart[productInCartIndex].size = talla
 
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        clearCart,
-        findProductInCart,
-        deleteFromCart,
-        updateProduct,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  )
+		window.localStorage.setItem('cart', JSON.stringify(newCart))
+		setCart(newCart)
+	}
+
+	return (
+		<CartContext.Provider
+			value={{
+				cart,
+				addToCart,
+				clearCart,
+				findProductInCart,
+				deleteFromCart,
+				updateProduct,
+			}}
+		>
+			{children}
+		</CartContext.Provider>
+	)
 }

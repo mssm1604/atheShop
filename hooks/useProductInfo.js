@@ -1,26 +1,33 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import { useCart } from "./useCart"
+import { useEffect, useState } from 'react'
+import { useCart } from './useCart'
 
 export function useProductInfo({ ifProductInCartId }) {
-  const [productInCartIndex, setProductInCartIndex] = useState(null)
-  const { cart, addToCart, findProductInCart } = useCart()
+	const [productInCartIndex, setProductInCartIndex] = useState(null)
+	const { cart, addToCart, findProductInCart } = useCart()
 
-  const checkIfProductInCart = (id) => {
-    const isProductInCart = findProductInCart(id)
-    setProductInCartIndex(isProductInCart)
-  }
+	const checkIfProductInCart = id => {
+		const isProductInCart = findProductInCart(id)
+		setProductInCartIndex(isProductInCart)
+	}
 
-  const handleOnClickAddToCart = (product, quantity, size) => {
-    if (!size || !quantity) return
-    addToCart(product, quantity, size)
-    setProductInCartIndex(cart.length + 1)
-  }
+	const onClickAddToCart = ({
+		id,
+		prodName,
+		price,
+		images,
+		quantity,
+		size,
+	}) => {
+		if (!size || !quantity) return
+		addToCart({ id, prodName, price, images, quantity, size })
+		setProductInCartIndex(cart.length + 1)
+	}
 
-  useEffect(() => {
-    checkIfProductInCart(ifProductInCartId)
-  }, [])
+	useEffect(() => {
+		checkIfProductInCart(ifProductInCartId)
+	}, [cart])
 
-  return { cart, productInCartIndex, handleOnClickAddToCart }
+	return { cart, productInCartIndex, onClickAddToCart }
 }

@@ -44,6 +44,7 @@
 
 .imgWrapper .image {
   object-fit: cover;
+  object-position: 50% 50%;
   filter: brightness(90%);
 }
 

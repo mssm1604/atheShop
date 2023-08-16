@@ -6,7 +6,7 @@ function CategorieHeader({ categorieTitle }) {
   return (
     <section className={styles.header}>
       <Image
-        src={`/../public/${categorieTitle}MainPicture.jpg`}
+        src={`/${categorieTitle}/mainPicture.jpg`}
         alt={`Imagen principal de la sección de ${categorieTitle}.`}
         priority
         fill

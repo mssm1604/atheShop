@@ -1,45 +1,52 @@
-import styles from "./productType.module.css"
-import Image from "next/image"
-import Link from "next/link"
+import styles from './productType.module.css'
+import Image from 'next/image'
+import Link from 'next/link'
 
-function ProductCard({ product, imageOnHover, productTypeList }) {
-  const { id, prodName, price } = product
-  return (
-    <article className={styles.articleProduct}>
-      <Link href={`${productTypeList}/${id}`}>
-        <div className={styles.imgWrapper}>
-          <picture>
-            <Image
-              src={`/../public/mujer/ropa/saco.jpg`}
-              alt={prodName}
-              fill
-              className={styles.productImage}
-            />
-          </picture>
+function ProductCard({ product, subCategorie }) {
+	const { id, prodName, price, images } = product
 
-          <picture>
-            <Image
-              src={`/../public/mujer/ropa/${imageOnHover}`}
-              alt={imageOnHover}
-              fill
-              className={styles.productImageOnHover}
-            />
-          </picture>
-        </div>
+	return (
+		<article className={styles.articleProduct}>
+			<Link href={`${subCategorie}/${id}`}>
+				<div className={styles.imgWrapper}>
+					<picture>
+						<Image
+							fill
+							src={images[0]}
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							alt={prodName}
+							className={styles.productImage}
+						/>
+					</picture>
 
-        <footer className={styles.productFooter}>
-          <div>
-            <h4>{prodName}</h4>
-          </div>
-          <div>
-            <p>
-              $ <span>{price}</span>
-            </p>
-          </div>
-        </footer>
-      </Link>
-    </article>
-  )
+					<picture>
+						<Image
+							fill
+							src={images[1]}
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							alt={`second image of the product ${prodName}`}
+							className={styles.productImageOnHover}
+						/>
+					</picture>
+				</div>
+
+				<footer className={styles.productFooter}>
+					<div>
+						<h4>{prodName}</h4>
+					</div>
+					<div>
+						<span>
+							{Number(price).toLocaleString('es-US', {
+								style: 'currency',
+								currency: 'COP',
+								roundingPriority: 'morePrecision',
+							})}
+						</span>
+					</div>
+				</footer>
+			</Link>
+		</article>
+	)
 }
 
 export { ProductCard }

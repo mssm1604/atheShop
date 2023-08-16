@@ -10,7 +10,7 @@ function Home() {
       <section className={styles.infoWrapper}>
         <div className={styles.bgWrapper}>
           <Image
-            src="/../public/mainPicture.jpg"
+            src="/mainPicture.jpg"
             alt="main picture"
             className={styles.background}
             priority

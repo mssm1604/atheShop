@@ -4,7 +4,7 @@ async function handler(req, res) {
   const { query: param } = req
 
   const consul =
-    "SELECT * FROM `products` inner join cat_prod on products.ID_cat=cat_prod.ID_cat WHERE products.prID = ?"
+    "SELECT * FROM `products` WHERE products.prID = ?"
 
   const product = await query({
     query: consul,
