@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import styles from "./editView.module.css"
 import Image from "next/image"
 import { useCart } from "@/hooks/useCart"
-import { EditViewSelect } from "./editViewSelect"
+import { EditViewSelect } from "@components/cart/EditViewSelect"
 
 export function EditView({ idProduct, setProductIdToEdit }) {
   const [currentProductToEdit, setCurrentProductToEdit] = useState(null)

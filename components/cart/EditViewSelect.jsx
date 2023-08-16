@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowDown } from "../icons/Icons"
-import styles from "./editView.module.css"
+import styles from "@/components/cart/editView.module.css"
 
 export function EditViewSelect({
   inputValue,
