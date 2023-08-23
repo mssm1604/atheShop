@@ -4,7 +4,7 @@ export async function getProducts({ params, productType }) {
 	const { categorie, subCategorie, idProduct } = params
 	try {
 		const { data } = await axios.post(
-			`http://localhost:3000/api/${idProduct ? idProduct : ''}`,
+			`https://localhost:3000/api/${idProduct ? idProduct : ''}`,
 			{
 				categorie,
 				subCategorie,
