@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import styles from './Filters.module.css'
 import { ArrowRight, Check } from '@/components/icons/Icons'

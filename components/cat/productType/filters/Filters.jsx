@@ -7,13 +7,6 @@ import { OrderBySection } from './OrderBySection'
 function Filters({ sectionName, productTypes }) {
 	
 	const handleShowFiltersSection = () => {
-		// const ifFiltersVisible =
-		// 	filtersAndSelections.current.getAttribute('data-visible')
-		// if (ifFiltersVisible === 'false') {
-		// 	filtersAndSelections.current.setAttribute('data-visible', true)
-		// } else {
-		// 	filtersAndSelections.current.setAttribute('data-visible', false)
-		// }
 	}
 
 	return (
