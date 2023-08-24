@@ -1,10 +1,13 @@
+import { getDomain } from '@/lib/getDomain'
 import axios from 'axios'
 
 export async function getProducts({ params, productType }) {
 	const { categorie, subCategorie, idProduct } = params
+	const domain = getDomain()
+
 	try {
 		const { data } = await axios.post(
-			`https://https://athe-shop.vercel.app/api/${idProduct ? idProduct : ''}`,
+			`${domain}/api/${idProduct ? idProduct : ''}`,
 			{
 				categorie,
 				subCategorie,
