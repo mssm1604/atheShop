@@ -4,6 +4,7 @@ import axios from 'axios'
 export async function getProducts({ params, productType }) {
 	const { categorie, subCategorie, idProduct } = params
 	const domain = getDomain()
+	console.log(process.env.NEXT_PUBLIC_DEVELOPMENT)
 
 	try {
 		const { data } = await axios.post(
