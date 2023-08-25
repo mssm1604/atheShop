@@ -6,7 +6,7 @@ import {
   menSubCatSections,
   sportsSubCatSections,
   womenSubCatSections,
-} from "@/public/subCategoriesContent/subCategories"
+} from "@/constants/subCategories"
 
 function SubCategoriesSection({ params }) {
   const { categorie } = params
