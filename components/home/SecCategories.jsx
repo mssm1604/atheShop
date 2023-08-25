@@ -16,19 +16,19 @@ function SecCategories() {
 
       <section className={styles.contCategories}>
         <Categorie
-          urlLink="mujer/mujerMainPicture.jpg"
+          urlLink="mujer/mainPicture.jpg"
           title="mujer"
           articleCategoriesList={articleCategoriesList}
         />
 
         <Categorie
-          urlLink="hombre/hombreMainPicture.jpg"
+          urlLink="hombre/mainPicture.jpg"
           title="hombre"
           articleCategoriesList={articleCategoriesList}
         />
 
         <Categorie
-          urlLink="deportes/deportesMainPicture.jpg"
+          urlLink="deportes/mainPicture.jpg"
           title="deportes"
           articleCategoriesList={articleCategoriesList}
         />
