@@ -19,7 +19,7 @@ export function ProductypeOptions({ productTypes }) {
 			parentE.setAttribute('data-selected', false)
 
 			const filterdOptions = productTypeOptions?.filter(
-				value => value !== parentElValue
+				prevValue => prevValue !== parentElValue
 			)
 
 			filterdOptions.length <= 0
@@ -36,14 +36,14 @@ export function ProductypeOptions({ productTypes }) {
 	const handleApplyChanges = () => {
 		setFilters(prevState => ({
 			...prevState,
-			productType: productTypeOptions,
+			productType: productTypeOptions
 		}))
 	}
 
 	const handleClearSelections = () => {
 		setFilters(prevState => ({
 			...prevState,
-			productType: 'all',
+			productType: 'all'
 		}))
 	}
 	return (

@@ -1,5 +1,5 @@
 import { useProducts } from '@/hooks/useProducts'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function useProductsList({ params }) {
 	const [products, setProducts] = useState()
@@ -19,11 +19,7 @@ export function useProductsList({ params }) {
 			.finally(() => setLoading(false))
 	}, [filters])
 
-	const orderedProducts = useMemo(() => {
-		return orderBy !== 'none'
-			? filterProductsFn({ products, sort: orderBy })
-			: products
-	}, [orderBy])
+	const orderedProducts = filterProductsFn({ products, sort: orderBy })
 
-	return { products, productTypesList, orderedProducts, loading }
+	return { productTypesList, orderedProducts, loading }
 }

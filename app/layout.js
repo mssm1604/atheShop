@@ -16,7 +16,6 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
             <CartProvider>
               <FiltersProvider>
-                {/* <Header /> */}
                 {children}
               </FiltersProvider>
             </CartProvider>

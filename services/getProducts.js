@@ -31,7 +31,7 @@ export async function getProducts({ params, productType }) {
 
 		return {
 			formatedData,
-			productTypesList
+			productTypesList,
 		}
 	} catch (error) {
 		// throw new Error('Problemas al obtener productos ')

@@ -9,19 +9,20 @@ import styles from './ropa.module.css'
 
 function ProductTypeList({ params }) {
 	const { categorie, subCategorie } = params
-	const { products, productTypesList, orderedProducts, loading } =
-		useProductsList({ params })
+	const { productTypesList, orderedProducts, loading } = useProductsList({
+		params
+	})
 
 	return (
 		<>
 			<Header headType={'mainView'} />
 			<CategorieHeader categorieTitle={categorie} />
 			<main>
-				{products?.length > 0 && (
+				{orderedProducts?.length > 0 && !loading && (
 					<>
 						<Filters sectionName={params} productTypes={productTypesList} />
 						<ListOfProducts
-							products={!orderedProducts ? products : orderedProducts}
+							products={orderedProducts}
 							subCategorie={subCategorie}
 						/>
 					</>
@@ -40,7 +41,7 @@ function ProductTypeList({ params }) {
 					</section>
 				)}
 
-				{!loading && products?.length === 0 && (
+				{!loading && orderedProducts?.length === 0 && (
 					<section className={styles.noResults}>
 						<h2 className={styles.titleNoResults}>
 							No hay resultados para esta búsqueda

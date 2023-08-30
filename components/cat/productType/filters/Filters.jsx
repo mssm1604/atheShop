@@ -3,9 +3,11 @@ import { Close, Filter } from '@/components/icons/Icons'
 import { Selections } from './Selections'
 import { ProductypeOptions } from './ProductTypeOptions'
 import { OrderBySection } from './OrderBySection'
+import { useFilters } from '@/hooks/useFilters'
 
 function Filters({ sectionName, productTypes }) {
-	
+
+	const { filters } = useFilters()
 	const handleShowFiltersSection = () => {
 	}
 
@@ -32,7 +34,7 @@ function Filters({ sectionName, productTypes }) {
 				</div>
 
 				<div className={`${styles.flexRow}  ${styles.selections}`}>
-					<Selections />
+					<Selections productTypes={filters?.productType}  />
 				</div>
 			</div>
 

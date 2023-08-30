@@ -1,7 +1,7 @@
 import { ArrowRight } from '@/components/icons/Icons'
 import styles from './Filters.module.css'
 
-export function Selections({ selections }) {
+export function Selections({ productTypes }) {
 	return (
 		<div className={`${styles.groupWrapper} ${styles.selectionsWrapper} `}>
 			<button
@@ -18,13 +18,13 @@ export function Selections({ selections }) {
 				className={`${styles.sectionToShow} ${styles.selectionsSummaryWrapper}`}
 			>
 				<div className={styles.selectionsListWrapper}>
-					{selections == 'all' ? (
+					{productTypes == 'all' ? (
 						<h4>No hay filtros seleccionados</h4>
 					) : (
 						<>
 							<h4>Tipo de producto</h4>
 							<ul className={`${styles.flexColumn} ${styles.selectionsList}`}>
-								{selections?.map(value => (
+								{productTypes?.map(value => (
 									<li key={value}>{value}</li>
 								))}
 							</ul>
