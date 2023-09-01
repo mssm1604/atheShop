@@ -15,13 +15,13 @@ export function useProductInfo({ ifProductInCartId }) {
 	const onClickAddToCart = ({
 		id,
 		prodName,
+		prodType,
 		price,
 		images,
 		quantity,
-		size,
+		size
 	}) => {
-		if (!size || !quantity) return
-		addToCart({ id, prodName, price, images, quantity, size })
+		addToCart({ id, prodName, prodType, price, images, quantity, size })
 		setProductInCartIndex(cart.length + 1)
 	}
 

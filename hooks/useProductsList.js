@@ -1,8 +1,8 @@
 import { useProducts } from '@/hooks/useProducts'
 import { useEffect, useState } from 'react'
 
-export function useProductsList({ params }) {
-	const [products, setProducts] = useState()
+export function useProductsList({ params, numberProducts }) {
+	const [products, setProducts] = useState([])
 	const [productTypesList, setProductTypesList] = useState()
 	const [loading, setLoading] = useState(false)
 
@@ -11,13 +11,13 @@ export function useProductsList({ params }) {
 
 	useEffect(() => {
 		setLoading(true)
-		getProducts({ params, productType })
+		getProducts({ params, productType, numberProducts })
 			.then(({ formatedData, productTypesList }) => {
 				setProductTypesList(productTypesList)
-				setProducts(formatedData)
+				setProducts(prevProducts => prevProducts.concat(formatedData))
 			})
 			.finally(() => setLoading(false))
-	}, [filters])
+	}, [filters, numberProducts])
 
 	const orderedProducts = filterProductsFn({ products, sort: orderBy })
 

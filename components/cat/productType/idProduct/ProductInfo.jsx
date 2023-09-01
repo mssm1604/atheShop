@@ -15,7 +15,7 @@ export function ProductInfo({ loading, product, ifProductInCartId }) {
 	const quantities = [1, 2, 3, 4]
 
 	const { productInCartIndex, onClickAddToCart } = useProductInfo({
-		ifProductInCartId,
+		ifProductInCartId
 	})
 
 	const checkIfNotSelected = () => {
@@ -26,7 +26,7 @@ export function ProductInfo({ loading, product, ifProductInCartId }) {
 	const handleAddToCart = () => {
 		checkIfNotSelected()
 		if (!size || !quantity || size === 'error' || quantity === 'error') return
-		onClickAddToCart({ id, prodName, price, images, quantity, size })
+		onClickAddToCart({ id, prodName, prodType, price, images, quantity, size })
 	}
 
 	return (
@@ -57,7 +57,7 @@ export function ProductInfo({ loading, product, ifProductInCartId }) {
 									{Number(price).toLocaleString('es-US', {
 										style: 'currency',
 										currency: 'COP',
-										roundingPriority: 'morePrecision',
+										roundingPriority: 'morePrecision'
 									})}
 								</span>
 							</div>

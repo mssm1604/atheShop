@@ -16,7 +16,15 @@ export function CartProvider({ children }) {
 		return cart.findIndex(item => item.id == idPr)
 	}
 
-	const addToCart = ({ id, prodName, price, images, quantity, size }) => {
+	const addToCart = ({
+		id,
+		prodName,
+		prodType,
+		price,
+		images,
+		quantity,
+		size
+	}) => {
 		const imageToUse = images[0]
 
 		const productInCartIndex = findProductInCart(id)
@@ -33,11 +41,12 @@ export function CartProvider({ children }) {
 			{
 				id,
 				prodName,
+				prodType,
 				price,
 				imageToUse,
 				quantity,
-				size,
-			},
+				size
+			}
 		])
 
 		localStorage.setItem(
@@ -47,11 +56,12 @@ export function CartProvider({ children }) {
 				{
 					id,
 					prodName,
+					prodType,
 					price,
 					imageToUse,
 					quantity,
-					size,
-				},
+					size
+				}
 			])
 		)
 	}
@@ -85,7 +95,7 @@ export function CartProvider({ children }) {
 				clearCart,
 				findProductInCart,
 				deleteFromCart,
-				updateProduct,
+				updateProduct
 			}}
 		>
 			{children}

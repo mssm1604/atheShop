@@ -1,120 +1,124 @@
 .isLoading {
-  width: 100%;
-  grid-column: span 4;
-  min-height: 217px;
-  background-color: red;
-  z-index: 9999;
+	width: 100%;
+	grid-column: span 4;
+	min-height: 217px;
+	background-color: red;
+	z-index: 9999;
+}
+
+.listOfProductsWrapper {
+	display: flex;
+	flex-direction: column;
 }
 
 .listOfProducts {
-  font-family: "Antic";
-  background-color: #ffffff;
-  display: grid;
-  column-gap: 2px;
-  row-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
-  border-bottom: 1px solid black;
+	font-family: 'Antic';
+	background-color: #ffffff;
+	display: grid;
+	column-gap: 2px;
+	row-gap: 20px;
+	grid-template-columns: repeat(4, 1fr);
 }
 
 .articleProduct a {
-  display: flex;
-  flex-direction: column;
-  transition: opacity 200ms;
-  border-inline: 1px solid transparent;
-  border-block: 1px solid transparent;
+	display: flex;
+	flex-direction: column;
+	transition: opacity 200ms;
+	border-inline: 1px solid transparent;
+	border-block: 1px solid transparent;
 }
 
 .articleProduct .imgWrapper {
-  position: relative;
-  align-self: center;
-  width: 100%;
-  height: 25vw;
+	position: relative;
+	align-self: center;
+	width: 100%;
+	height: 25vw;
 }
 
 .articleProduct .imgWrapper picture {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
 .articleProduct a .productImageOnHover {
-  opacity: 0;
-  transition: opacity 200ms;
-  object-fit: cover;
+	opacity: 0;
+	transition: opacity 200ms;
+	object-fit: cover;
 }
 
 .articleProduct .productImage {
-  object-fit: cover;
-  transition: opacity 200ms;
+	object-fit: cover;
+	transition: opacity 200ms;
 }
 
 .articleProduct a:hover .productImage {
-  opacity: 0;
+	opacity: 0;
 }
 
 .articleProduct a:hover .productImageOnHover {
-  opacity: 1;
+	opacity: 1;
 }
 
 .articleProduct a:hover {
-  border: 1px solid rgba(0, 0, 0, 0.524);
+	border: 1px solid rgba(0, 0, 0, 0.524);
 }
 
 .articleProduct .actionIcons {
-  position: absolute;
-  display: flex;
-  justify-content: flex-end;
-  padding-inline: 15px;
-  padding-top: 15px;
+	position: absolute;
+	display: flex;
+	justify-content: flex-end;
+	padding-inline: 15px;
+	padding-top: 15px;
 }
 
 .actionIcons svg {
-  stroke: black;
+	stroke: black;
 }
 
 .actionIcons svg:hover {
-  stroke: rgb(202, 3, 3);
-  fill: none;
+	stroke: rgb(202, 3, 3);
+	fill: none;
 }
 
 .articleProduct .productFooter {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 10px 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 10px 16px;
 }
 
 .productFooter span {
-  font-family: "Roboto", sans-serif;
-  font-weight: bolder;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
 }
 
 @media (max-width: 1050px) {
-  .listOfProducts .noResults {
-    grid-column: span 3;
-  }
+	.listOfProducts .noResults {
+		grid-column: span 3;
+	}
 
-  .listOfProducts {
-    grid-template-columns: repeat(3, 1fr);
-  }
+	.listOfProducts {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-  .articleProduct .imgWrapper {
-    height: 34vw;
-  }
+	.articleProduct .imgWrapper {
+		height: 34vw;
+	}
 }
 
 @media (max-width: 700px) {
-  .listOfProducts .noResults {
-    min-height: 340px;
-    grid-column: span 2;
-  }
+	.listOfProducts .noResults {
+		min-height: 340px;
+		grid-column: span 2;
+	}
 
-  .listOfProducts {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	.listOfProducts {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  .articleProduct .imgWrapper {
-    height: 50vw;
-  }
+	.articleProduct .imgWrapper {
+		height: 50vw;
+	}
 }

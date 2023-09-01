@@ -6,8 +6,10 @@ import { ArrowRight, Check } from '@/components/icons/Icons'
 import { useFilters } from '@/hooks/useFilters'
 
 export function ProductypeOptions({ productTypes }) {
-	const [productTypeOptions, setProductTypeOptions] = useState([])
-	const { setFilters } = useFilters()
+	const { filters, setFilters } = useFilters()
+	const [productTypeOptions, setProductTypeOptions] = useState(
+		filters?.productType
+	)
 
 	const handleOptionClick = e => {
 		const parentE = e.target.parentElement
@@ -46,6 +48,7 @@ export function ProductypeOptions({ productTypes }) {
 			productType: 'all'
 		}))
 	}
+
 	return (
 		<div className={`${styles.groupWrapper}`}>
 			<button
@@ -71,14 +74,23 @@ export function ProductypeOptions({ productTypes }) {
 							onClick={handleOptionClick}
 							className={`${styles.flexRow} ${styles.filtersOptions}`}
 						>
-							{productTypes?.map(({ productType }) => (
-								<li key={productType} id={productType} data-selected="false">
-									<span className={styles.spanWrapper}>
-										<Check />
-									</span>
-									<span>{productType}</span>
-								</li>
-							))}
+							{productTypes?.map(({ productType }) =>
+								filters?.productType.includes(productType) ? (
+									<li key={productType} id={productType} data-selected="true">
+										<span className={styles.spanWrapper}>
+											<Check />
+										</span>
+										<span>{productType}</span>
+									</li>
+								) : (
+									<li key={productType} id={productType} data-selected="false">
+										<span className={styles.spanWrapper}>
+											<Check />
+										</span>
+										<span>{productType}</span>
+									</li>
+								)
+							)}
 						</ul>
 					</section>
 				</div>

@@ -1,7 +1,7 @@
 import { getDomain } from '@/lib/getDomain'
 import axios from 'axios'
 
-export async function getProducts({ params, productType }) {
+export async function getProducts({ params, productType, numberProducts }) {
 	const { categorie, subCategorie, idProduct } = params
 	const domain = getDomain()
 
@@ -11,7 +11,8 @@ export async function getProducts({ params, productType }) {
 			{
 				categorie,
 				subCategorie,
-				productType
+				productType,
+				numberProducts
 			}
 		)
 
@@ -31,7 +32,7 @@ export async function getProducts({ params, productType }) {
 
 		return {
 			formatedData,
-			productTypesList,
+			productTypesList
 		}
 	} catch (error) {
 		// throw new Error('Problemas al obtener productos ')

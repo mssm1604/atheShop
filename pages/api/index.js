@@ -1,28 +1,18 @@
 import { supabase } from '@/config/dbQuery'
 
 async function handler(req, res) {
-	let { categorie, subCategorie, productType } = req.body
+	let { categorie, subCategorie, productType, numberProducts } = req.body
 
-	console.log(productType)
-
-	const parsedArray =
-		typeof productType === 'object' && productType.map(item => `'${item}'`)
+	const query = supabase
+		.from(`products`)
+		.select(`*, cat_prod!inner(name_cat)`)
+		.eq('subCategorie', `${subCategorie}`)
+		.eq('cat_prod.name_cat', `${categorie}`)
 
 	const { data: products } =
 		productType === 'all'
-			? await supabase
-					.from(`products`)
-					.select(`*, cat_prod!inner(name_cat)`)
-					.eq('subCategorie', `${subCategorie}`)
-					.eq('cat_prod.name_cat', `${categorie}`)
-			: await supabase
-					.from(`products`)
-					.select(`*, cat_prod!inner(name_cat)`)
-					.eq('subCategorie', `${subCategorie}`)
-					.eq('cat_prod.name_cat', `${categorie}`)
-					.in('productType', [productType])
-
-	console.log(products)
+			? await query.range(numberProducts - 4, numberProducts - 1)
+			: await query.in('productType', [productType])
 
 	const { data: productTypesList } = await supabase
 		.from('distinct_producttypes')
