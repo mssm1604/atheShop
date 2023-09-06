@@ -1,9 +1,9 @@
-import { useProductInfo } from "@/hooks/useProductInfo"
+import { useAddProducts } from "@/hooks/useAddProducts"
 import styles from "../productInfo.module.css"
 import Link from "next/link"
 
 export function IfProductInCartSection({ ifProductInCartId, quantity, size }) {
-  const { cart, productInCartIndex } = useProductInfo({ ifProductInCartId })
+  const { cart, productInCartIndex } = useAddProducts({ ifProductInCartId })
 
   return (
     <div className={styles.ifProductCartWrapper}>

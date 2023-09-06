@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import styles from './productInfo.module.css'
 import { InputSelect } from './productInfo/InputSelect'
-import { useProductInfo } from '@/hooks/useProductInfo'
+import { useAddProducts } from '@/hooks/useAddProducts'
 import { IfProductInCartSection } from './productInfo/IfProductInCart'
 
 export function ProductInfo({ loading, product, ifProductInCartId }) {
@@ -14,7 +14,7 @@ export function ProductInfo({ loading, product, ifProductInCartId }) {
 	const sizes = ['XS', 'S', 'M', 'L', 'XL']
 	const quantities = [1, 2, 3, 4]
 
-	const { productInCartIndex, onClickAddToCart } = useProductInfo({
+	const { productInCartIndex, onClickAddToCart } = useAddProducts({
 		ifProductInCartId
 	})
 

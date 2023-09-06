@@ -9,14 +9,17 @@ async function handler(req, res) {
 		.eq('subCategorie', `${subCategorie}`)
 		.eq('cat_prod.name_cat', `${categorie}`)
 
+	const range = range(numberProducts - 4, numberProducts - 1)
+
 	const { data: products } =
 		productType === 'all'
-			? await query.range(numberProducts - 4, numberProducts - 1)
+			? await query.range()
 			: await query.in('productType', [productType])
 
 	const { data: productTypesList } = await supabase
 		.from('distinct_producttypes')
 		.select()
+		.eq('name_cat', categorie).range()
 
 	res
 		.status(200)

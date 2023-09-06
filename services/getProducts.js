@@ -35,7 +35,12 @@ export async function getProducts({ params, productType, numberProducts }) {
 			productTypesList
 		}
 	} catch (error) {
-		// throw new Error('Problemas al obtener productos ')
-		console.log(error)
+		throw new Error('Problemas al obtener productos ')
 	}
 }
+
+
+// insert into products 
+//("productName", "subCategorie", "productType", price, stock,  images, id_cat) 
+//values ('camisa', 'ropa', 'camisa',  145990, 56,
+//'{"colection": ["/hombre/ropa/pantalon.jpg", "/hombre/ropa/pantalonOnHover.jpg"]}', 2)

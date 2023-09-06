@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 export function useProductsList({ params, numberProducts }) {
 	const [products, setProducts] = useState([])
 	const [productTypesList, setProductTypesList] = useState()
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const { filters, getProducts, filterProductsFn } = useProducts()
 	const { productType, orderBy } = filters

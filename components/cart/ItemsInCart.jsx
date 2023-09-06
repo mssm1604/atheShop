@@ -3,7 +3,6 @@ import { Edit2, HeartIcon, Trash } from '../icons/Icons'
 import styles from './itemsInCart.module.css'
 
 export function ItemsInCart({ cart, deleteFromCart, setProductIdToEdit }) {
-  console.log(cart)
 	return cart.map(
 		({ id, prodName, prodType, price, quantity, size, imageToUse }) => (
 			<article key={id} className={styles.itemCardWrapper}>

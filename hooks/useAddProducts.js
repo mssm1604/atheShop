@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useCart } from './useCart'
 
-export function useProductInfo({ ifProductInCartId }) {
+export function useAddProducts({ ifProductInCartId }) {
 	const [productInCartIndex, setProductInCartIndex] = useState(null)
 	const { cart, addToCart, findProductInCart } = useCart()
 
