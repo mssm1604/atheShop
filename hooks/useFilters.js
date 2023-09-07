@@ -1,20 +1,26 @@
-import { FiltersContext } from "@/contexts/filtersContext"
-import { useContext } from "react"
+import { FiltersContext } from '@/contexts/filtersContext'
+import { useCallback, useContext } from 'react'
 
 export function useFilters() {
-  const { filters, setFilters } = useContext(FiltersContext)
+	const { filters, setFilters } = useContext(FiltersContext)
+	const { productType, orderBy: sort } = filters
 
-  const filterProductsFn = ({ products, sort = "none" }) => {
-    const sortedProds =
-      sort !== "none"
-        ? products?.toSorted((a, b) => {
-            if (sort == "low-high") return a.price - b.price
-            if (sort == "high-low") return b.price - a.price
-          })
-        : products
+	const filterProductsFn = ({ products }) => {
+		const filteredByType =
+			productType !== 'all'
+				? products?.filter(product => productType?.includes(product.prodType))
+				: products
 
-    return sortedProds
-  }
+		const filteredProducts =
+			sort !== 'none'
+				? filteredByType?.toSorted((a, b) => {
+						if (sort == 'low-high') return a.price - b.price
+						if (sort == 'high-low') return b.price - a.price
+				  })
+				: filteredByType
 
-  return { filters, setFilters, filterProductsFn }
+		return filteredProducts
+	}
+
+	return { filters, setFilters, filterProductsFn }
 }

@@ -3,23 +3,24 @@ import { useEffect, useState } from 'react'
 
 export function useProductsList({ params, numberProducts }) {
 	const [products, setProducts] = useState([])
-	const [productTypesList, setProductTypesList] = useState()
 	const [loading, setLoading] = useState(true)
+	const [totalProducts, setTotaProducts] = useState(0)
+	const productTypes = products?.map(product => product.prodType)
 
 	const { filters, getProducts, filterProductsFn } = useProducts()
-	const { productType, orderBy } = filters
+	const { productType } = filters
+
+	const orderedProducts = filterProductsFn({ products })
 
 	useEffect(() => {
 		setLoading(true)
 		getProducts({ params, productType, numberProducts })
-			.then(({ formatedData, productTypesList }) => {
-				setProductTypesList(productTypesList)
+			.then(({ formatedData, totalProducts: total }) => {
 				setProducts(prevProducts => prevProducts.concat(formatedData))
+				setTotaProducts(total)
 			})
 			.finally(() => setLoading(false))
-	}, [filters, numberProducts])
+	}, [numberProducts])
 
-	const orderedProducts = filterProductsFn({ products, sort: orderBy })
-
-	return { productTypesList, orderedProducts, loading }
+	return { orderedProducts, productTypes, totalProducts, loading }
 }

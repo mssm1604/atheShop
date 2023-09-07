@@ -17,30 +17,29 @@ export async function getProducts({ params, productType, numberProducts }) {
 		)
 
 		const formatedData = data.products.map(
-			({ prID, productName, productType, price, stock, ID_cat, images }) => ({
+			({ prID, productName, productType, price, stock, id_cat, images }) => ({
 				id: prID,
 				prodType: productType,
 				price,
 				prodName: productName,
 				stock,
-				idCat: ID_cat,
+				idCat: id_cat,
 				images: images?.colection
 			})
 		)
 
-		const productTypesList = data.productTypesList
+		const totalProducts = data.totalProducts
 
 		return {
 			formatedData,
-			productTypesList
+			totalProducts
 		}
 	} catch (error) {
 		throw new Error('Problemas al obtener productos ')
 	}
 }
 
-
-// insert into products 
-//("productName", "subCategorie", "productType", price, stock,  images, id_cat) 
+// insert into products
+//("productName", "subCategorie", "productType", price, stock,  images, id_cat)
 //values ('camisa', 'ropa', 'camisa',  145990, 56,
 //'{"colection": ["/hombre/ropa/pantalon.jpg", "/hombre/ropa/pantalonOnHover.jpg"]}', 2)

@@ -1,0 +1,61 @@
+.noResults {
+	display: grid;
+	place-content: center;
+	grid-column: span 4;
+	min-height: 217px;
+
+	.titleNoResults {
+		font-weight: 400;
+		font-size: 27px;
+	}
+}
+
+.buttonWrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block: 20px;
+	border-bottom: 1px solid black;
+
+	.btnLocalStyle {
+		width: auto;
+		text-transform: uppercase;
+		font-size: 14px;
+		letter-spacing: 0.6px;
+		padding: 7px 13px;
+		border: 1px solid rgba(0, 0, 0, 0.223);
+		cursor: pointer;
+		transition: background-color 150ms ease-out, scale 200ms;
+	}
+
+	.btnLocalStyle:hover {
+		scale: 1.02;
+	}
+
+	.btnShowMoreProducts {
+		color: rgb(216, 216, 216);
+		background-color: #000000;
+	}
+
+	.seenAllProductsWrapper {
+		display: flex;
+
+		.btnSeenAllProducts {
+			display: flex;
+			gap: 11px;
+		}
+
+		.btnSeenAllProducts span svg {
+			transform: rotate(90deg);
+			width: 13px;
+			height: 13px;
+		}
+
+		.totalProducts {
+			position: absolute;
+			align-self: center;
+			left: 10px;
+		}
+	}
+}

@@ -6,13 +6,11 @@ import { OrderBySection } from './OrderBySection'
 import { useFilters } from '@/hooks/useFilters'
 
 function Filters({ sectionName, productTypes }) {
-
 	const { filters } = useFilters()
-	const handleShowFiltersSection = () => {
-	}
+	const handleShowFiltersSection = () => {}
 
 	return (
-		<section className={`${styles.flexRow} ${styles.filtersBar}`}>
+		<section id='filters' className={`${styles.flexRow} ${styles.filtersBar}`}>
 			<div className={styles.sectionName}>
 				<h4>{`${sectionName?.subCategorie} para ${sectionName?.categorie}`}</h4>
 			</div>
@@ -34,7 +32,7 @@ function Filters({ sectionName, productTypes }) {
 				</div>
 
 				<div className={`${styles.flexRow}  ${styles.selections}`}>
-					<Selections productTypes={filters?.productType}  />
+					<Selections productTypes={filters?.productType} />
 				</div>
 			</div>
 

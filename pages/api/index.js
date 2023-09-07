@@ -5,23 +5,17 @@ async function handler(req, res) {
 
 	const query = supabase
 		.from(`products`)
-		.select(`*, cat_prod!inner(name_cat)`)
+		.select(`*, cat_prod!inner(name_cat)`, { count: 'exact' })
 		.eq('subCategorie', `${subCategorie}`)
 		.eq('cat_prod.name_cat', `${categorie}`)
 
-	const { data: products } =
+	const { data: products, count } =
 		productType === 'all'
 			? await query.range(numberProducts - 4, numberProducts - 1)
 			: await query.in('productType', [productType])
 
-	const { data: productTypesList } = await supabase
-		.from('distinct_producttypes')
-		.select()
-		.eq('name_cat', categorie).range(numberProducts - 4, numberProducts - 1)
 
-	res
-		.status(200)
-		.json({ products: products, productTypesList: productTypesList })
+	res.status(200).json({ products: products, totalProducts: count })
 }
 
 export default handler

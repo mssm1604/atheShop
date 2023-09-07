@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './Filters.module.css'
 import { ArrowRight, Check } from '@/components/icons/Icons'
 import { useFilters } from '@/hooks/useFilters'
@@ -10,6 +10,8 @@ export function ProductypeOptions({ productTypes }) {
 	const [productTypeOptions, setProductTypeOptions] = useState(
 		filters?.productType
 	)
+
+	const emptySearch = useRef(true)
 
 	const handleOptionClick = e => {
 		const parentE = e.target.parentElement
@@ -24,9 +26,9 @@ export function ProductypeOptions({ productTypes }) {
 				prevValue => prevValue !== parentElValue
 			)
 
-			filterdOptions.length <= 0
-				? setProductTypeOptions('all')
-				: setProductTypeOptions(filterdOptions)
+			setProductTypeOptions(() =>
+				filterdOptions.length <= 0 ? 'all' : filterdOptions
+			)
 		} else {
 			parentE.setAttribute('data-selected', true)
 			setProductTypeOptions(prevState =>
@@ -36,16 +38,15 @@ export function ProductypeOptions({ productTypes }) {
 	}
 
 	const handleApplyChanges = () => {
+		productTypeOptions === 'all' && filters.productType === 'all'
+			? (emptySearch.current = true)
+			: (emptySearch.current = false)
+
+		if (emptySearch.current) return
+
 		setFilters(prevState => ({
 			...prevState,
 			productType: productTypeOptions
-		}))
-	}
-
-	const handleClearSelections = () => {
-		setFilters(prevState => ({
-			...prevState,
-			productType: 'all'
 		}))
 	}
 
@@ -74,16 +75,16 @@ export function ProductypeOptions({ productTypes }) {
 							onClick={handleOptionClick}
 							className={`${styles.flexRow} ${styles.filtersOptions}`}
 						>
-							{productTypes?.map(({ productType }) =>
+							{productTypes?.map((productType, index) =>
 								filters?.productType.includes(productType) ? (
-									<li key={productType} id={productType} data-selected="true">
+									<li key={index} id={productType} data-selected="true">
 										<span className={styles.spanWrapper}>
 											<Check />
 										</span>
 										<span>{productType}</span>
 									</li>
 								) : (
-									<li key={productType} id={productType} data-selected="false">
+									<li key={index} id={productType} data-selected="false">
 										<span className={styles.spanWrapper}>
 											<Check />
 										</span>
@@ -100,13 +101,6 @@ export function ProductypeOptions({ productTypes }) {
 						onClick={handleApplyChanges}
 					>
 						Aplicar cambios
-					</button>
-
-					<button
-						className={styles.btnClearSelections}
-						onClick={handleClearSelections}
-					>
-						Quitar selecciones
 					</button>
 				</div>
 			</section>
