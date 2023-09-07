@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import styles from './Filters.module.css'
 import { ArrowRight, Check } from '@/components/icons/Icons'
 import { useFilters } from '@/hooks/useFilters'
+import { ProductTypesList } from './ProductTypesList'
 
 export function ProductypeOptions({ productTypes }) {
 	const { filters, setFilters } = useFilters()
@@ -38,7 +39,7 @@ export function ProductypeOptions({ productTypes }) {
 	}
 
 	const handleApplyChanges = () => {
-		productTypeOptions === 'all' && filters.productType === 'all'
+		productTypeOptions === filters.productType
 			? (emptySearch.current = true)
 			: (emptySearch.current = false)
 
@@ -71,28 +72,11 @@ export function ProductypeOptions({ productTypes }) {
 						className={`${styles.flexColumn} ${styles.listWrapper} ${styles.productTypeList}`}
 					>
 						<h4>tipo de producto</h4>
-						<ul
-							onClick={handleOptionClick}
-							className={`${styles.flexRow} ${styles.filtersOptions}`}
-						>
-							{productTypes?.map((productType, index) =>
-								filters?.productType.includes(productType) ? (
-									<li key={index} id={productType} data-selected="true">
-										<span className={styles.spanWrapper}>
-											<Check />
-										</span>
-										<span>{productType}</span>
-									</li>
-								) : (
-									<li key={index} id={productType} data-selected="false">
-										<span className={styles.spanWrapper}>
-											<Check />
-										</span>
-										<span>{productType}</span>
-									</li>
-								)
-							)}
-						</ul>
+						<ProductTypesList
+							filters={filters}
+							productTypes={productTypes}
+							handleOptionClick={handleOptionClick}
+						/>
 					</section>
 				</div>
 				<div className={`${styles.flexRow} ${styles.buttonsWrapper}`}>
